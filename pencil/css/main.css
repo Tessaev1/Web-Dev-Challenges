@@ -1,3 +1,31 @@
+body {
+    font-family: Lato, 'Helevetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+/* apply this to ALL headings */
+h1 { 
+    font-family: Raleway, 'Helevetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-weight: 100;
+    padding-top: 100px;
+}
+
+header {
+    background-image: linear-gradient(to bottom, #391D18, #814236);
+}
+
+p {
+    line-height: 1.43;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
 /* general container element to constrain content width on wider screens */
 .container {
   padding-right: 15px;
@@ -5,20 +33,27 @@
   margin-right: auto;
   margin-left: auto; 
 }
+
 @media (min-width: 768px) {
     .container {
         width: 750px; 
     } 
 }
+
 @media (min-width: 992px) {
     .container {
         width: 970px; 
-    } 
+    }
+
+    header {
+        background-image: url(../img/header.jpg);
+        background-size: cover;
+        background-position: center;
+    }
 }
+
 @media (min-width: 1200px) {
     .container {
         width: 1170px; 
     } 
 }
-
-/* put your style rules here */
