@@ -5,19 +5,21 @@ body {
 }
 
 /* apply this to ALL headings */
-h1 { 
+h1, h2, h3 { 
     font-family: Raleway, 'Helevetica Neue', Helvetica, Arial, sans-serif;
     margin-top: 0;
     margin-bottom: 0.5rem;
 }
 
 h1 {
+    font-size: 50px;
     font-weight: 100;
-    padding-top: 100px;
 }
 
 header {
     background-image: linear-gradient(to bottom, #391D18, #814236);
+    padding-top: 200px;
+    padding-bottom: 40px;
 }
 
 p {
@@ -34,10 +36,30 @@ p {
   margin-left: auto; 
 }
 
+svg {
+    width: 40px;
+    fill: #814236;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+}
+
+.col {
+    flex-grow: 1;
+    padding: 0 0.25em;
+}
+
 @media (min-width: 768px) {
     .container {
         width: 750px; 
     } 
+
+    /*hide button element*/
 }
 
 @media (min-width: 992px) {
@@ -48,7 +70,7 @@ p {
     header {
         background-image: url(../img/header.jpg);
         background-size: cover;
-        background-position: center;
+        background-position: 100% 100%;
     }
 }
 
@@ -56,4 +78,15 @@ p {
     .container {
         width: 1170px; 
     } 
+}
+
+.shopping-cart-button {
+    color: #FFF;
+    font-size: 14px;
+    background-color: #814236;
+    text-decoration: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #391D18;
+    padding: 0.5em 1em;
 }
