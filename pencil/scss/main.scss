@@ -1,0 +1,90 @@
+$fallback-fonts: 'Helevetica Neue', Helvetica, Arial, sans-serif;
+$section-background: #F8F8F8;
+// darken($section-background, 5%)
+$light-accent-color: #814236;
+// darken($light-accent-color, 20%)
+$card-border-color: darken($section-background, 10%);
+
+$sm-width: 750px;
+$md-width: 970px;
+$lg-width: 1170px; 
+
+body {
+    font-family: Lato, $fallback-fonts;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+h1, h2, h3 { 
+    font-family: Raleway, $fallback-fonts;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-variant: small-caps;
+}
+
+@import "header";
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; 
+}
+
+.row {
+    display: flex;
+    background-color: $section-background;
+    padding: 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0;
+    justify-content: center;
+}
+
+.feature-col, .uses-col {
+    flex: 1;
+    background-color: #FFF;
+    margin: 5px;
+    text-align: center;
+    border: 2px solid #DFDFDF;
+    border-radius: 3px;
+    flex: 0 0 40%;
+}
+
+img {
+    width: 200px;
+}
+
+svg {
+    width: 40px;
+    fill: $light-accent-color;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: $sm-width; 
+    } 
+
+    .row {
+        flex-direction: row;
+    }  
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: $md-width; 
+    }
+
+    .feature-col, .uses-col {
+        flex: 0 0 20%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: $lg-width; 
+    } 
+}

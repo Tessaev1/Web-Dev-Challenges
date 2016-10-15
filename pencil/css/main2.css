@@ -1,0 +1,93 @@
+body {
+  font-family: Lato, "Helevetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 18px; }
+
+h1, h2, h3 {
+  font-family: Raleway, "Helevetica Neue", Helvetica, Arial, sans-serif;
+  margin-top: 0;
+  margin-bottom: 0.5rem; }
+
+h2 {
+  font-variant: small-caps; }
+
+header {
+  background-image: linear-gradient(to bottom, #391D18, #814236);
+  padding-top: 200px;
+  padding-bottom: 40px; }
+  header h1 {
+    font-size: 50px;
+    font-weight: 100; }
+    header h1 .icon-link {
+      display: inline;
+      color: #FFF;
+      align-items: align-right; }
+  header .button-link {
+    display: none; }
+  @media (min-width: 992px) {
+    header {
+      background-image: url(../img/header.jpg);
+      background-size: cover;
+      background-position: 100% 100%; }
+      header .icon-link {
+        display: none; }
+      header .button-link {
+        display: block;
+        color: #FFF;
+        font-size: 14px;
+        background-color: #814236;
+        text-decoration: none;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #391D18;
+        padding: 0.5em 1em;
+        width: 7.5em; } }
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
+
+.row {
+  display: flex;
+  background-color: #F8F8F8;
+  padding: 20px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0;
+  justify-content: center; }
+
+.feature-col, .uses-col {
+  flex: 1;
+  background-color: #FFF;
+  margin: 5px;
+  text-align: center;
+  border: 2px solid #DFDFDF;
+  border-radius: 3px;
+  flex: 0 0 40%; }
+
+img {
+  width: 200px; }
+
+svg {
+  width: 40px;
+  fill: #814236; }
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px; }
+
+  .row {
+    flex-direction: row; } }
+@media (min-width: 992px) {
+  .container {
+    width: 970px; }
+
+  .feature-col, .uses-col {
+    flex: 0 0 20%; } }
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px; } }
+
+/*# sourceMappingURL=main2.css.map */

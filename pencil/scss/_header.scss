@@ -1,0 +1,46 @@
+// create a header place holder using %
+// extend that placeholder for compact and full header
+
+
+header {
+    background-image: linear-gradient(to bottom, #391D18, $light-accent-color);
+    padding-top: 200px;
+    padding-bottom: 40px;
+
+    h1 {
+        font-size: 50px;
+        font-weight: 100;
+        .icon-link {
+            display: inline;
+            color: #FFF;
+            align-items: align-right; 
+        }  
+    }
+
+    .button-link {
+        display: none;
+    }
+
+    @media (min-width: 992px) {
+        background-image: url(../img/header.jpg);
+        background-size: cover;
+        background-position: 100% 100%;
+
+        .icon-link {
+            display: none;
+        }
+
+        .button-link {
+            display: block;
+            color: #FFF;
+            font-size: 14px;
+            background-color: $light-accent-color;
+            text-decoration: none;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #391D18;
+            padding: 0.5em 1em;
+            width: 7.5em;
+        }        
+    }
+}
