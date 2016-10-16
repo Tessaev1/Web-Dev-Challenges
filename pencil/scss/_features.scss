@@ -1,0 +1,14 @@
+.feature-container {
+    // .row {
+        background-color: $light-section-background;
+
+        .col {
+            padding: 20px;
+        }
+    // }
+
+    svg {
+        width: 40px;
+        fill: $light-accent-color;
+    }
+}

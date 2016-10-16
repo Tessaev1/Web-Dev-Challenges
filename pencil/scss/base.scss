@@ -1,0 +1,85 @@
+$fallback-fonts: 'Helevetica Neue', Helvetica, Arial, sans-serif;
+$light-section-background: #F8F8F8;
+$dark-section-background: darken($light-section-background, 5%);
+$light-accent-color: #814236;
+$dark-accent-color: darken($light-accent-color, 20%);
+$card-border-color: darken($light-section-background, 10%);
+
+$sm-width: 750px;
+$md-width: 970px;
+$lg-width: 1170px; 
+
+@import "fonts";
+@import "header";
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: 15px; 
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.43;
+}
+
+main {
+    .row {
+        display: flex;
+        padding: 20px;
+        flex-flow: column wrap;
+        margin: 0;
+        justify-content: space-around;
+    }
+
+    .col {
+        flex: 1 0 40%;
+        background-color: #FFF;
+        margin: 5px;
+        border: 2px solid $card-border-color;
+        border-radius: 3px;
+    }
+}
+
+
+@import "features";
+@import "uses";
+@import "testimonial";
+
+@media (min-width: 768px) {
+    .container {
+        width: $sm-width; 
+    } 
+
+    main {
+        .row {
+            flex-flow: row wrap;
+        }
+
+        @media (min-width: $sm-width) {
+            text-align: center;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: $md-width; 
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: $lg-width; 
+    } 
+
+    @media (min-width: $lg-width) {
+        main {
+            .col {
+                flex: 1 0 20%;
+            }
+        }
+    }
+}
