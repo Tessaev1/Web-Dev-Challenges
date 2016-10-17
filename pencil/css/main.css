@@ -24,6 +24,8 @@ header {
     flex-flow: row wrap; }
     header .row .col {
       flex: 1; }
+      header .row .col span {
+        padding-left: 10px; }
     header .row .icon-link {
       color: #FFF;
       position: absolute;
@@ -56,7 +58,7 @@ header {
         text-decoration: none;
         border: 1px solid #391d18;
         padding: 0.5em 1em;
-        width: 140px; } }
+        width: 145px; } }
 
 footer {
   background-color: #391d18;
@@ -70,6 +72,10 @@ footer {
     footer .row a {
       color: #AAAAAA;
       text-decoration: none; }
+    footer .row .footer-icons {
+      font-size: 25px;
+      position: absolute;
+      right: 100px; }
 
 .container {
   padding-right: 15px;
@@ -118,16 +124,30 @@ main .col {
     flex: 1 0 40%;
     text-align: left;
     display: flex;
-    flex-direction: column;
-    position: relative; }
+    flex-direction: column; }
+    .uses-container .col .note-taking-img {
+      background-image: url(../img/note-taking.jpg);
+      background-position: center;
+      background-size: cover;
+      height: 150px; }
+    .uses-container .col .art-img {
+      background-image: url(../img/art.jpg);
+      background-position: center;
+      background-size: cover;
+      height: 150px; }
+    .uses-container .col .drafting-img {
+      background-image: url(../img/drafting.jpg);
+      background-position: center;
+      background-size: cover;
+      height: 150px; }
+    .uses-container .col .coloring-img {
+      background-image: url(../img/coloring.jpg);
+      background-position: center;
+      background-size: cover;
+      height: 150px; }
     .uses-container .col .img-overlay {
       padding: 15px;
-      position: absolute;
-      bottom: 0;
-      background-color: #FFF;
-      height: 150px; }
-  .uses-container img {
-    width: 100%; }
+      background-color: #FFF; }
 
 .testimonial-container {
   background-color: #F8F8F8; }
@@ -137,9 +157,10 @@ main .col {
     text-align: left;
     padding-left: 100px;
     padding-right: 30px; }
-  .testimonial-container span {
-    font-size: .8em;
-    color: #999999; }
+    .testimonial-container .col span {
+      font-size: .8em;
+      color: #999999;
+      padding-left: 5px; }
   .testimonial-container img {
     border-radius: 50%;
     position: relative;

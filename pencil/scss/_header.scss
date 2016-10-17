@@ -19,6 +19,10 @@ header {
 
         .col {
             flex: 1;
+
+            span {
+                padding-left: 10px;
+            }
         }
 
         .icon-link {
@@ -65,7 +69,7 @@ header {
             text-decoration: none;
             border: 1px solid $dark-accent-color;
             padding: 0.5em 1em;
-            width: 140px;
+            width: 145px;
         }        
     }
 }

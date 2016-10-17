@@ -1,27 +1,39 @@
+@mixin uses-col-img($background-img) {
+    background-image: $background-img;
+    background-position: center;
+    background-size: cover;
+    height: 150px;
+}
+
 .uses-container {
-    // .row {
-        background-color: $dark-section-background;
+    background-color: $dark-section-background;
 
-        .col {
-            flex: 1 0 40%;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            // padding: 20px;
+    .col {
+        flex: 1 0 40%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
 
-            .img-overlay {
-                padding: 15px;
-                position: absolute;
-                bottom: 0; 
-                background-color: #FFF;
-                height: 150px;
-            }
+        .note-taking-img {
+            @include uses-col-img(url(../img/note-taking.jpg));
         }
 
-        img {
-            width: 100%;
+        .art-img {
+            @include uses-col-img(url(../img/art.jpg));
         }
-    // }
+
+        .drafting-img {
+            @include uses-col-img(url(../img/drafting.jpg));
+        }
+
+        .coloring-img {
+            @include uses-col-img(url(../img/coloring.jpg));
+        }
+
+        .img-overlay {
+            padding: 15px;
+            background-color: #FFF;
+        }
+    }
 }
 

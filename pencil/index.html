@@ -1,3 +1,6 @@
+<!--differentiate sections using the section tag! not container-->
+<!--testimonial images should be nested flex items to remove top padding-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +23,7 @@
                         <h1>Pencil</h1>
                         <p>A revolutionary new writing device from the same people who brought you Quill & Ink</p>
                         <a class="button-link" href="https://amzn.com/B0188A3N16">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>  Get Yours Now</span>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Get Yours Now</span>
                         </a>
                     </div>
                     <a class="icon-link" href="https://amzn.com/B0188A3N16" aria-label="Search with Google"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
@@ -62,28 +65,28 @@
                     <h2>Insanely Useful</h2>
                     <div class="row">
                         <div class="col">
-                            <img src="img/note-taking.jpg" alt="Photo of notebook and pencil">
+                            <div class="note-taking-img"></div>
                             <div class="img-overlay">
                                 <h3>Note Taking</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates laborum adipisci magnam saepe praesentium error quaerat accusamus modi repellat ad expedita, sed itaque porro voluptatem maiores reprehenderit, rem incidunt perspiciatis.</p>
                             </div>
                         </div>
                         <div class="col">
-                            <img src="img/art.jpg" alt="Photo of pencil artwork">
+                            <div class="art-img"></div>
                             <div class="img-overlay">
                                 <h3>Art</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est consequuntur sapiente tempore fuga minima architecto ratione qui officia, animi saepe.</p>
                             </div>
                         </div>
                         <div class="col">
-                            <img src="img/drafting.jpg" alt="Photo of other pencil and other tools">
+                            <div class="drafting-img"></div>
                             <div class="img-overlay">
                                 <h3>Drafting</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ab vero sed nam, quaerat qui rerum neque tenetur facilis illum molestias quam recusandae eveniet dicta quia fugiat, minima nulla, odit.</p>
                             </div>
                         </div>
                         <div class="col">
-                            <img src="img/coloring.jpg" alt="Photo of colored pencils">
+                            <div class="coloring-img"></div>
                             <div class="img-overlay">
                                 <h3>Coloring</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias incidunt praesentium consectetur possimus architecto eaque minima, sit illum cum quis totam quam iusto, nam voluptatum accusantium est beatae dicta. Sapiente.</p>
@@ -99,12 +102,12 @@
                     <div class="row">
                         <div class="col">
                             <img src="https://www.gravatar.com/avatar/0e58cf2f03c9a0a5d6965154837cd595" alt="Photo of David Stearns">
-                            <h3>Dr Stearns</h3><span>teacher</span>
+                            <h3>Dr Stearns<span>teacher</span></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas modi mollitia illum quis, doloribus in distinctio voluptates earum quisquam quam saepe fugiat magnam beatae, vel similique doloremque hic officia nesciunt.</p>
                         </div>
                         <div class="col">
                             <img src="https://www.gravatar.com/avatar/71900224a10dd5cb3f230f9f64eeaf43" alt="Photo of Ena Markovic">
-                            <h3>Ena Markovic</h3><span>developer</span>
+                            <h3>Ena Markovic<span>developer</span></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo tempore blanditiis, eum tenetur perferendis et eveniet aperiam debitis quidem. Ab vero esse commodi tempore consequuntur ut doloribus fugiat molestiae. Amet?</p>
                         </div>
                     </div>
@@ -115,14 +118,21 @@
         <footer>
             <div class="container">
                 <div class="row">
-                    <p>&copy; 2016 Pencil Inc.</p>
-                    <p>Icons made by 
-                        <a href="http://www.freepik.com">Freepik</a> 
-                        from 
-                        <a href="http://www.flaticon.com">www.flaticon.com</a> 
-                        is licensed by 
-                        <a href="http://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a>
-                    </p>
+                    <div class="col">
+                        <p>&copy; 2016 Pencil Inc.</p>
+                        <p>Icons made by 
+                            <a href="http://www.freepik.com">Freepik</a> 
+                            from 
+                            <a href="http://www.flaticon.com">www.flaticon.com</a> 
+                            is licensed by 
+                            <a href="http://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a>
+                        </p>
+                    </div>
+                    <div class="footer-icons">
+                        <a class="envelope-icon" href="mailto:info@pencil.com" aria-label="Send email to info@pencil.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                        <a class="twitter-icon" href="https://twitter.com/pencilorg" aria-label="Navigate to Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a class="facebook-icon" href="https://www.facebook.com/search/top/?q=pencil" aria-label="Navigate to Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    </div>
                 </div>
             </div>
         </footer>
