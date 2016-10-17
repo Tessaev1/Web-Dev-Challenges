@@ -2,6 +2,23 @@
     // .row {
         background-color: $dark-section-background;
 
+        .col {
+            flex: 1 0 40%;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            // padding: 20px;
+
+            .img-overlay {
+                padding: 15px;
+                position: absolute;
+                bottom: 0; 
+                background-color: #FFF;
+                height: 150px;
+            }
+        }
+
         img {
             width: 100%;
         }

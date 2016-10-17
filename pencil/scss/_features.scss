@@ -1,14 +1,29 @@
 .feature-container {
     // .row {
-        background-color: $light-section-background;
+    background-color: $light-section-background;
 
-        .col {
-            padding: 20px;
-        }
+    .col {
+        // flex: 1 0 40%;
+        padding: 20px;
+        padding-left: 70px;
+    }
     // }
 
     svg {
-        width: 40px;
+        width: 50px;
+        position: absolute;
+        left: 40px;
         fill: $light-accent-color;
+    }
+
+    @media (min-width: 768px) {
+        .col {
+            padding-left: 0;
+        }
+
+        svg {
+            width: 40px;
+            position: initial; 
+        }
     }
 }

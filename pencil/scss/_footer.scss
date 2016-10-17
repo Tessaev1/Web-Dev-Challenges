@@ -1,0 +1,19 @@
+footer {
+    background-color: $dark-accent-color;
+    color: #EEEEEE;
+    font-size: 14px;
+
+    .row {
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        p {
+            padding-bottom: 20px;
+        }
+
+        a {
+            color: #AAAAAA;
+            text-decoration: none;
+        }
+    }
+}
