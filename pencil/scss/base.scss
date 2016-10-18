@@ -9,9 +9,12 @@ $sm-width: 750px;
 $md-width: 970px;
 $lg-width: 1170px; 
 
-@import "fonts";
 @import "header";
 @import "footer";
+@import "features";
+@import "uses";
+@import "testimonial";
+@import "fonts";
 
 .container {
   padding-right: 15px;
@@ -45,11 +48,6 @@ main {
     }
 }
 
-
-@import "features";
-@import "uses";
-@import "testimonial";
-
 @media (min-width: 768px) {
     .container {
         width: $sm-width; 
@@ -58,10 +56,6 @@ main {
     main {
         .row {
             flex-flow: row wrap;
-        }
-
-        @media (min-width: $sm-width) {
-            text-align: center;
         }
     }
 }
@@ -76,12 +70,4 @@ main {
     .container {
         width: $lg-width; 
     } 
-
-    @media (min-width: $lg-width) {
-        main {
-            .col {
-                flex: 1 0 20%;
-            }
-        }
-    }
 }
