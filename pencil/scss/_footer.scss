@@ -11,15 +11,24 @@ footer {
             padding-bottom: 20px;
         }
 
-        a {
-            color: #AAAAAA;
-            text-decoration: none;
+        .col {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: space-between;
+
+            @media (min-width: 768px) {
+                flex-flow: row wrap;
+            }
         }
 
         .footer-icons {
             font-size: 25px;
-            position: absolute;
-            right: 100px;
+            padding-bottom: 30px;
         }
+    }
+
+    a {
+        color: #AAAAAA;
+        text-decoration: none;
     }
 }

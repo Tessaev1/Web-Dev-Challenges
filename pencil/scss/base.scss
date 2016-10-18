@@ -17,7 +17,7 @@ $lg-width: 1170px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: 15px; 
+  margin-left: auto; 
 }
 
 p {
@@ -29,7 +29,8 @@ p {
 main {
     .row {
         display: flex;
-        padding: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         flex-flow: column wrap;
         margin: 0;
         justify-content: space-around;

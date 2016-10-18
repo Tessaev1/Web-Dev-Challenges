@@ -1,12 +1,17 @@
-.testimonial-container {
+.testimonials {
     background-color: $light-section-background;
 
     .col {
         border: none;
         background-color: $light-section-background;
         text-align: left;
-        padding-left: 100px;
-        padding-right: 30px;
+        display: flex;
+        padding-top: 25px;
+        padding-bottom: 25px;
+
+        .instructor-bio {
+            padding-left: 20px;
+        }
 
         span {
             font-size: .8em;
@@ -17,14 +22,5 @@
 
     img {
         border-radius: 50%;
-        position: relative;
-        right: 100px;
-        top: 80px;
-    }
-
-    @media (min-width: 768px) {
-        .col {
-            flex: 1;
-        }
     }
 }

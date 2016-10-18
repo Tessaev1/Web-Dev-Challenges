@@ -1,6 +1,3 @@
-<!--differentiate sections using the section tag! not container-->
-<!--testimonial images should be nested flex items to remove top padding-->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,8 +29,8 @@
         </header>
 
         <main>
-            <section>
-                <div class="feature-container">
+            <section class="features">
+                <div class="container">
                     <h2>Packed with Features</h2>
                     <div class="row">
                         <div class="col">
@@ -60,55 +57,63 @@
                 </div>
             </section>
 
-            <section>
-                <div class="uses-container">
+            <section class="uses">
+                <div class="container">
                     <h2>Insanely Useful</h2>
                     <div class="row">
                         <div class="col">
                             <div class="note-taking-img"></div>
                             <div class="img-overlay">
                                 <h3>Note Taking</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates laborum adipisci magnam saepe praesentium error quaerat accusamus modi repellat ad expedita, sed itaque porro voluptatem maiores reprehenderit, rem incidunt perspiciatis.</p>
+                                <p>Having trouble remembering those little details? Take a Pencil with you and jot them down wherever you go. If you make a mistake, erase it and start over.</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="art-img"></div>
                             <div class="img-overlay">
                                 <h3>Art</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est consequuntur sapiente tempore fuga minima architecto ratione qui officia, animi saepe.</p>
+                                <p>Pencil supports subtle shading as well as defined lines, allowing you to create beautiful drawings.</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="drafting-img"></div>
                             <div class="img-overlay">
                                 <h3>Drafting</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ab vero sed nam, quaerat qui rerum neque tenetur facilis illum molestias quam recusandae eveniet dicta quia fugiat, minima nulla, odit.</p>
+                                <p>Designing that new cathedral or castle? Use Pencil with the popular accessories Protractor and Ruler to create precise drawings for your laborers.</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="coloring-img"></div>
                             <div class="img-overlay">
                                 <h3>Coloring</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias incidunt praesentium consectetur possimus architecto eaque minima, sit illum cum quis totam quam iusto, nam voluptatum accusantium est beatae dicta. Sapiente.</p>
+                                <p>Stressed out? Try relaxing with a Pencil and one of our many coloring books.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section>
-                <div class="testimonial-container">
+            <section class="testimonials">
+                <div class="container">
                     <h2>Loved by Millions</h2>
                     <div class="row">
                         <div class="col">
-                            <img src="https://www.gravatar.com/avatar/0e58cf2f03c9a0a5d6965154837cd595" alt="Photo of David Stearns">
-                            <h3>Dr Stearns<span>teacher</span></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas modi mollitia illum quis, doloribus in distinctio voluptates earum quisquam quam saepe fugiat magnam beatae, vel similique doloremque hic officia nesciunt.</p>
+                            <div>
+                                <img src="https://www.gravatar.com/avatar/0e58cf2f03c9a0a5d6965154837cd595" alt="Photo of David Stearns">
+                            </div>
+                            <div class="instructor-bio">
+                                <h3>Dr Stearns<span>teacher</span></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas modi mollitia illum quis, doloribus in distinctio voluptates earum quisquam quam saepe fugiat magnam beatae, vel similique doloremque hic officia nesciunt.</p>
+                            </div>
                         </div>
                         <div class="col">
-                            <img src="https://www.gravatar.com/avatar/71900224a10dd5cb3f230f9f64eeaf43" alt="Photo of Ena Markovic">
-                            <h3>Ena Markovic<span>developer</span></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo tempore blanditiis, eum tenetur perferendis et eveniet aperiam debitis quidem. Ab vero esse commodi tempore consequuntur ut doloribus fugiat molestiae. Amet?</p>
+                            <div>
+                                <img src="https://www.gravatar.com/avatar/71900224a10dd5cb3f230f9f64eeaf43" alt="Photo of Ena Markovic">
+                            </div>
+                            <div class="instructor-bio">
+                                <h3>Ena Markovic<span>developer</span></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo tempore blanditiis, eum tenetur perferendis et eveniet aperiam debitis quidem. Ab vero esse commodi tempore consequuntur ut doloribus fugiat molestiae. Amet?</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,20 +124,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <p>&copy; 2016 Pencil Inc.</p>
-                        <p>Icons made by 
-                            <a href="http://www.freepik.com">Freepik</a> 
-                            from 
-                            <a href="http://www.flaticon.com">www.flaticon.com</a> 
-                            is licensed by 
-                            <a href="http://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a>
-                        </p>
+                        <div>
+                            <p>&copy; 2016 Pencil Inc.</p>
+                        </div>
+                        <div class="footer-icons">
+                            <a class="envelope-icon" href="mailto:info@pencil.com" aria-label="Send email to info@pencil.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                            <a class="twitter-icon" href="https://twitter.com/pencilorg" aria-label="Navigate to Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a class="facebook-icon" href="https://www.facebook.com/search/top/?q=pencil" aria-label="Navigate to Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        </div>
                     </div>
-                    <div class="footer-icons">
-                        <a class="envelope-icon" href="mailto:info@pencil.com" aria-label="Send email to info@pencil.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-                        <a class="twitter-icon" href="https://twitter.com/pencilorg" aria-label="Navigate to Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a class="facebook-icon" href="https://www.facebook.com/search/top/?q=pencil" aria-label="Navigate to Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    </div>
+                    <p>
+                        Icons made by
+                        <a href="http://www.freepik.com">Freepik</a> 
+                        from 
+                        <a href="http://www.flaticon.com">www.flaticon.com</a> 
+                        is licensed by 
+                        <a href="http://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a>
+                    </p>
                 </div>
             </div>
         </footer>
