@@ -1,0 +1,39 @@
+@mixin uses-col-img($background-img) {
+    background-image: $background-img;
+    background-position: center;
+    background-size: cover;
+    height: 150px;
+}
+
+.uses {
+    background-color: $dark-section-background;
+
+    .col {
+        flex: 1 0 40%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+
+        .note-taking-img {
+            @include uses-col-img(url(../img/note-taking.jpg));
+        }
+
+        .art-img {
+            @include uses-col-img(url(../img/art.jpg));
+        }
+
+        .drafting-img {
+            @include uses-col-img(url(../img/drafting.jpg));
+        }
+
+        .coloring-img {
+            @include uses-col-img(url(../img/coloring.jpg));
+        }
+
+        .img-overlay {
+            padding: 15px;
+            background-color: #FFF;
+        }
+    }
+}
+

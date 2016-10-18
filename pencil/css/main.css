@@ -1,24 +1,196 @@
-/* general container element to constrain content width on wider screens */
+header {
+  background-image: linear-gradient(to bottom, #391D18, #814236);
+  padding-top: 20px;
+  padding-bottom: 40px;
+  color: #FFF; }
+  header h1 {
+    font-size: 2.5em;
+    font-weight: 100; }
+  header .row {
+    display: flex;
+    flex-flow: row wrap; }
+    header .row .col {
+      flex: 1; }
+      header .row .col span {
+        padding-left: 10px; }
+    header .row .icon-link {
+      color: #FFF;
+      position: absolute;
+      right: 25px;
+      font-size: 2.5rem; }
+    @media (min-width: 768px) {
+      header .row {
+        width: 45%; } }
+  header .button-link {
+    display: none; }
+  @media (min-width: 992px) {
+    header {
+      background-image: url(../img/header.jpg);
+      background-size: cover;
+      background-position: 100% 100%;
+      color: #000;
+      padding-top: 150px; }
+      header h1 {
+        font-size: 6rem; }
+      header p {
+        font-size: 1.5em; }
+      header .icon-link {
+        display: none; }
+      header .button-link {
+        display: block;
+        color: #FFF;
+        font-size: 18px;
+        background-color: #814236;
+        text-decoration: none;
+        border: 1px solid #391d18;
+        padding: 0.5em 1em;
+        width: 145px; } }
+
+footer {
+  background-color: #391d18;
+  color: #EEEEEE;
+  font-size: 14px; }
+  footer .row {
+    padding-top: 40px;
+    padding-bottom: 40px; }
+    footer .row p {
+      padding-bottom: 20px; }
+    footer .row .col {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between; }
+      @media (min-width: 768px) {
+        footer .row .col {
+          flex-flow: row wrap; } }
+    footer .row .footer-icons {
+      font-size: 25px;
+      padding-bottom: 30px; }
+  footer a {
+    color: #AAAAAA;
+    text-decoration: none; }
+
+.features {
+  background-color: #F8F8F8; }
+  .features .col {
+    padding: 20px;
+    padding-left: 70px;
+    text-align: left; }
+    .features .col p {
+      padding-left: 15px; }
+  .features svg {
+    width: 50px;
+    position: absolute;
+    left: 35px;
+    fill: #814236; }
+  @media (min-width: 768px) {
+    .features .col {
+      padding-left: 0;
+      text-align: center; }
+    .features svg {
+      width: 40px;
+      position: initial; } }
+  @media (min-width: 1200px) {
+    .features .col {
+      flex: 1 0 20%; } }
+
+.uses {
+  background-color: #ebebeb; }
+  .uses .col {
+    flex: 1 0 40%;
+    text-align: left;
+    display: flex;
+    flex-direction: column; }
+    .uses .col .note-taking-img {
+      background-image: url(../img/note-taking.jpg);
+      background-position: center;
+      background-size: cover;
+      height: 150px; }
+    .uses .col .art-img {
+      background-image: url(../img/art.jpg);
+      background-position: center;
+      background-size: cover;
+      height: 150px; }
+    .uses .col .drafting-img {
+      background-image: url(../img/drafting.jpg);
+      background-position: center;
+      background-size: cover;
+      height: 150px; }
+    .uses .col .coloring-img {
+      background-image: url(../img/coloring.jpg);
+      background-position: center;
+      background-size: cover;
+      height: 150px; }
+    .uses .col .img-overlay {
+      padding: 15px;
+      background-color: #FFF; }
+
+.testimonials {
+  background-color: #F8F8F8; }
+  .testimonials .col {
+    border: none;
+    background-color: #F8F8F8;
+    text-align: left;
+    display: flex;
+    padding-top: 25px;
+    padding-bottom: 25px; }
+    .testimonials .col .instructor-bio {
+      padding-left: 20px; }
+    .testimonials .col span {
+      font-size: .8em;
+      color: #999999;
+      padding-left: 5px; }
+  .testimonials img {
+    border-radius: 50%; }
+
+body {
+  font-family: Lato, "Helevetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 18px; }
+  body h1, body h2, body h3 {
+    font-family: Raleway, "Helevetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: 0.5rem; }
+  body h2 {
+    font-variant: small-caps;
+    text-align: center;
+    padding-top: 30px; }
+
 .container {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto; 
-}
-@media (min-width: 768px) {
-    .container {
-        width: 750px; 
-    } 
-}
-@media (min-width: 992px) {
-    .container {
-        width: 970px; 
-    } 
-}
-@media (min-width: 1200px) {
-    .container {
-        width: 1170px; 
-    } 
-}
+  margin-left: auto; }
 
-/* put your style rules here */
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 1.43; }
+
+main .row {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-flow: column wrap;
+  margin: 0;
+  justify-content: space-around; }
+main .col {
+  flex: 1 0 40%;
+  background-color: #FFF;
+  margin: 5px;
+  border: 2px solid #dfdfdf;
+  border-radius: 3px; }
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px; }
+
+  main .row {
+    flex-flow: row wrap; } }
+@media (min-width: 992px) {
+  .container {
+    width: 970px; } }
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px; } }
+
+/*# sourceMappingURL=main.css.map */
