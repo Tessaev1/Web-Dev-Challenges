@@ -1,0 +1,38 @@
+.features {
+    background-color: $light-section-background;
+
+    .col {
+        padding: 20px;
+        padding-left: 70px;
+        text-align: left;
+
+        p {
+            padding-left: 15px;
+        }
+    }
+
+    svg {
+        width: 50px;
+        position: absolute;
+        left: 35px;
+        fill: $light-accent-color;
+    }
+
+    @media (min-width: 768px) {
+        .col {
+            padding-left: 0;
+            text-align: center;
+        }
+
+        svg {
+            width: 40px;
+            position: initial; 
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .col {
+            flex: 1 0 20%;
+        }
+    }
+}
