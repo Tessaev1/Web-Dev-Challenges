@@ -4,13 +4,13 @@ var selectReport = document.getElementById("report-select");
 selectReport.addEventListener("change", function() {
     var reportName = selectReport.value;
     if (reportName == "star-wars") {
-        render(starWars.sort(compareLocale), Object.keys(starWars[0]));
+        render(starWars, Object.keys(starWars[0]));
     } else if (reportName == "20th") {
-        render(movies20thCentury.sort(compareDate), Object.keys(starWars[0]));
+        render(movies20thCentury, Object.keys(starWars[0]));
     } else if (reportName == "avg-by-genre") {
         render(getAvgSalesByGenre(), ["Genre", "Average Sales"]);
     } else {
-        console.log(reportName);
+        render(top100Movies(), ["Title", "Total Tickets Sold"]);
     }
 });
 
@@ -37,13 +37,15 @@ function render(rows, columnHeaders) {
     var tr = document.createElement("tr");
     columnHeaders.forEach(function(column) {
         tr.appendChild(createElement("th", column));
-
         thead.appendChild(tr);
     });
 
     rows.forEach(function(row) {
         var tr = document.createElement("tr");
         columnHeaders.forEach(function(header) {
+            // if (row[header] == "") {
+            //     tr.appendChild(createElement("td", "N/A"))
+            // }
             tr.appendChild(createElement("td", row[header]));
         });
         tbody.appendChild(tr);
@@ -55,25 +57,28 @@ var starWars = MOVIES.filter(function(movie) {
         return movie.title.toLowerCase().indexOf("star wars") >= 0;
     });
 
+starWars.sort(compareLocale);
+
 // sort string in ascending order
 function compareLocale(movie1, movie2) {
     return movie1.title.localeCompare(movie2.title);
 }
 
 var movies20thCentury = MOVIES.filter(function(movie) {
-    return movie.released < "2000-01-01T00:00:00Z";
+    return (movie.released < "2000-01-01T01:00:00Z") && (movie.year >= 2006 && movie.year <= 2015);
 });
 
-console.log(movies20thCentury.sort(compareDate));
+movies20thCentury.sort(compareDate);
+movies20thCentury.map(function(movie) {
+    movie.released = formatDate(movie.released);
+})
 
 function compareDate(movie1, movie2) {
-    // return function(movie1, movie2) {
-        return movie1.released < movie2.released;
-    // }
+    return (movie1.released + movie1.year).localeCompare((movie2.released + movie2.year));
 }
 
-
 // categorizes all movies by genre
+// make this an array????????????????????????????????
 function getGenres(movies) {
     var movieGenres = {};
     movies.forEach(function(movie) {
@@ -94,13 +99,13 @@ function getGenres(movies) {
 // output: [{ "genre" :"Comedy", "sales" : 1234}]
 function getAvgSalesByGenre() {
     var movieGenres = getGenres(MOVIES);
-    var genres = Object.keys(movieGenres);
+    // var genres = Object.keys(movieGenres);
     var salesSum = 0;
-    genres.forEach(function(genre) {
+    Object.keys(movieGenres).forEach(function(genre) {
         salesSum = movieGenres[genre].reduce(function(sum, movie) {
             return sum + movie.sales;
         }, 0);
-        movieGenres[genre] = formatCurrency(salesSum / movieGenres[genre].length);
+        movieGenres[genre] = salesSum / movieGenres[genre].length;
     });
     var output = [];
     Object.keys(movieGenres).forEach(function(key) {
@@ -110,7 +115,14 @@ function getAvgSalesByGenre() {
                          };
         output.push(genreSales);
     });
+    output.sort(compareGenres).map(function(movie) {
+        movie["Average Sales"] = formatCurrency(movie["Average Sales"]);
+    });
     return output; 
+}
+
+function compareGenres(movie1, movie2) {
+    return movie2["Average Sales"] - movie1["Average Sales"];
 }
 
 function formatCurrency(num) {
@@ -118,18 +130,44 @@ function formatCurrency(num) {
 }
 
 function formatDate(date) {
-    var moment = require('moment');
-    return moment(date).format();
+    return moment(date).format("l");
 }
 
-function top100Movies(movies) {
-    var ticketTotal = 0;
-    ticketTotal = movies.reduce(function(sum, movie) {
-        return sum + movie.tickets;
+function top100Movies() {
+    var distinctMovies = getDistinctMovies(MOVIES);
+    var output = [];
+    Object.keys(distinctMovies).forEach(function(movieKey) {
+        var ticketTotal = 0;
+        ticketTotal = distinctMovies[movieKey].reduce(function(sum, movie) {
+            return sum + movie.tickets;
+        }, 0);
+        var movie = distinctMovies[movieKey][0];
+        output.push({
+            "Title" : movie.title + " (" + movie.year + ")",
+            "Total Tickets Sold" : ticketTotal
+        });
     });
-    console.log(ticketTotal);
+    var top100 = output.sort(compareTicketTotals).slice(0,100);
+    return top100;
 }
 
+function compareTicketTotals(movie1, movie2) {
+    return movie2["Total Tickets Sold"] - movie1["Total Tickets Sold"];
+}
+
+// output: {"starwars02/02/2000T00:00" : [{movie object}]}}
+function getDistinctMovies(movies) {
+    var distinctMovies = {};
+    movies.forEach(function(movie) {
+        var uniqueID = movie['title'] + movie['released'];
+        if (uniqueID in distinctMovies) {
+            distinctMovies[uniqueID].push(movie);
+        } else {
+            distinctMovies[uniqueID] = [movie];
+        }
+    });
+    return distinctMovies;
+};
 
 // function descending(comparator) {
 //     return function(rec1, rec2) {
