@@ -1,24 +1,45 @@
 "use strict";
 
+var columnHeadings = Object.keys(MOVIES[0]);
+var reportHeading = document.querySelector("h2");
 var selectReport = document.getElementById("report-select");
-selectReport.addEventListener("change", function() {
+
+// generates a report when the user selects an option in the drop-down list
+selectReport.addEventListener("change", function(e) {
     var reportName = selectReport.value;
+    var heading = Array.from(e.target).find(function(child) {
+        return child.value === e.target.value;
+    }).innerText;
+    reportHeading.innerText = heading;
     if (reportName == "star-wars") {
-        render(starWars, Object.keys(starWars[0]));
+        render(starWars); 
     } else if (reportName == "20th") {
-        render(movies20thCentury, Object.keys(starWars[0]));
+        render(movies20thCentury);
     } else if (reportName == "avg-by-genre") {
-        render(getAvgSalesByGenre(), ["Genre", "Average Sales"]);
+        render(getAvgSalesByGenre());
     } else {
-        render(top100Movies(), ["Title", "Total Tickets Sold"]);
+        render(top100Movies());
     }
 });
 
 // https://github.com/info343-a16/info343-in-class/blob/completed/dom/js/app.js
-function createElement(elemName, text) {
+function createElement(elemName, text, columnName) {
     var elem = document.createElement(elemName);
     if (text) {
-        elem.textContent = text;
+        var formattedText = text;
+        if (columnName != null) {
+            if (columnName.toLowerCase().includes("sales")) {
+                formattedText = formatCurrency(text);
+                elem.classList.add("sales-column");
+            } else if (columnName.toLowerCase().includes("ticket")) {
+                elem.classList.add("ticket-column");
+                formattedText = formatTickets(text);
+            } else if (columnName.toLowerCase().includes("released")) {
+                elem.classList.add("released-column");
+                formattedText = formatDate(text);
+            } 
+        }
+        elem.textContent = formattedText;
     }
     return elem;
 }
@@ -26,80 +47,46 @@ function createElement(elemName, text) {
 var thead = document.querySelector("thead");
 var tbody = document.querySelector("tbody");
 
-// input: [{
-//          title: "Star Wars" 
-//          distributor: "Warer" 
-//         }, ["title", "ditributor"]]
-function render(rows, columnHeaders) {
+// renders a table with the given row and column data
+// input: [{title: "Star Wars", distributor: "Warer"}, {...}, {...}]
+function render(rows) {
+    var columnHeaders = Object.keys(rows[0]);
     thead.innerHTML = "";
     tbody.innerHTML = "";
 
     var tr = document.createElement("tr");
     columnHeaders.forEach(function(column) {
-        tr.appendChild(createElement("th", column));
+        tr.appendChild(createElement("th", column.toTitleCase()));
         thead.appendChild(tr);
     });
 
     rows.forEach(function(row) {
         var tr = document.createElement("tr");
         columnHeaders.forEach(function(header) {
-            // if (row[header] == "") {
-            //     tr.appendChild(createElement("td", "N/A"))
-            // }
-            tr.appendChild(createElement("td", row[header]));
+            tr.appendChild(createElement("td", (row[header] || "N/A"), header));
         });
         tbody.appendChild(tr);
     });
 }
 
-// returns all movies with 'star wars' in the title
+// returns all movies with 'star wars' in the title, sorted in alphabetically ascending order
 var starWars = MOVIES.filter(function(movie) {
-        return movie.title.toLowerCase().indexOf("star wars") >= 0;
-    });
+    return movie.title.toLowerCase().indexOf("star wars") >= 0;
+}).sort(compareLocale);
 
-starWars.sort(compareLocale);
-
-// sort string in ascending order
-function compareLocale(movie1, movie2) {
-    return movie1.title.localeCompare(movie2.title);
-}
-
+// returns all movies that were released before Jan. 1st 2000 and made revenues between 2006 and 2015
+// var century = formatDate("2000-01-01T01:00:00Z");
 var movies20thCentury = MOVIES.filter(function(movie) {
     return (movie.released < "2000-01-01T01:00:00Z") && (movie.year >= 2006 && movie.year <= 2015);
 });
 
+// sorts dates in ascending order (oldest at the top)
 movies20thCentury.sort(compareDate);
-movies20thCentury.map(function(movie) {
-    movie.released = formatDate(movie.released);
-})
 
-function compareDate(movie1, movie2) {
-    return (movie1.released + movie1.year).localeCompare((movie2.released + movie2.year));
-}
-
-// categorizes all movies by genre
-// make this an array????????????????????????????????
-function getGenres(movies) {
-    var movieGenres = {};
-    movies.forEach(function(movie) {
-        var genre = movie.genre;
-        if (genre in movieGenres) {
-            movieGenres[genre].push(movie);
-        } else {
-            movieGenres[genre] = [movie]
-        }
-    });
-    return movieGenres;
-}
-
-// output: {
-//         'Comedy' : $23,542,352.43
-//         'Horror' : $234,234,321.12
-//         }
-// output: [{ "genre" :"Comedy", "sales" : 1234}]
+// returns the average sales of each genre
+// output: [{ "genre" :"Comedy", "sales" : 1234}, {...}, {...}]
 function getAvgSalesByGenre() {
-    var movieGenres = getGenres(MOVIES);
-    // var genres = Object.keys(movieGenres);
+    var movieGenres = getMovieProperty(MOVIES, ["genre"]);
     var salesSum = 0;
     Object.keys(movieGenres).forEach(function(genre) {
         salesSum = movieGenres[genre].reduce(function(sum, movie) {
@@ -115,26 +102,14 @@ function getAvgSalesByGenre() {
                          };
         output.push(genreSales);
     });
-    output.sort(compareGenres).map(function(movie) {
-        movie["Average Sales"] = formatCurrency(movie["Average Sales"]);
+    return output.sort(function(movie1, movie2) {
+        return movie2["Average Sales"] - movie1["Average Sales"];
     });
-    return output; 
 }
 
-function compareGenres(movie1, movie2) {
-    return movie2["Average Sales"] - movie1["Average Sales"];
-}
-
-function formatCurrency(num) {
-    return numeral(num).format('$0,0.00');
-}
-
-function formatDate(date) {
-    return moment(date).format("l");
-}
-
+// returns the top 100 movies with the highest number of tickets sold
 function top100Movies() {
-    var distinctMovies = getDistinctMovies(MOVIES);
+    var distinctMovies = getMovieProperty(MOVIES, ["title", "released"]);
     var output = [];
     Object.keys(distinctMovies).forEach(function(movieKey) {
         var ticketTotal = 0;
@@ -147,27 +122,63 @@ function top100Movies() {
             "Total Tickets Sold" : ticketTotal
         });
     });
-    var top100 = output.sort(compareTicketTotals).slice(0,100);
-    return top100;
+    return output.sort(function(movie1, movie2) {
+        return movie2["Total Tickets Sold"] - movie1["Total Tickets Sold"];
+    }).slice(0,99);
 }
 
-function compareTicketTotals(movie1, movie2) {
-    return movie2["Total Tickets Sold"] - movie1["Total Tickets Sold"];
-}
-
-// output: {"starwars02/02/2000T00:00" : [{movie object}]}}
-function getDistinctMovies(movies) {
-    var distinctMovies = {};
+function getMovieProperty(movies, property) {
+    var current = {};
     movies.forEach(function(movie) {
-        var uniqueID = movie['title'] + movie['released'];
-        if (uniqueID in distinctMovies) {
-            distinctMovies[uniqueID].push(movie);
+        var key = "";
+        property.forEach(function(prop) {
+            key += movie[prop];
+        });
+        if (key in current) {
+            current[key].push(movie);
         } else {
-            distinctMovies[uniqueID] = [movie];
+            current[key] = [movie]
         }
     });
-    return distinctMovies;
-};
+    return current;
+}
+
+function compareLocale(movie1, movie2) {
+    return movie1.title.localeCompare(movie2.title);
+}
+
+function compareDate(movie1, movie2) {
+    var releasedCompare = moment(movie1.released).diff(movie2.released);
+    if (releasedCompare === 0) {
+        return movie1.year - movie2.year;
+    }
+    return releasedCompare;
+}
+
+function formatCurrency(num) {
+    return numeral(num).format('$0,0[.]00');
+}
+
+function formatDate(date) {
+    return moment(date).format("l");
+}
+
+function formatTickets(num) {
+    return numeral(num).format('0,0');
+}
+
+// String to title case
+// Alex Bell-Towne gave me this function
+String.prototype.toTitleCase = function() {
+    return this.split(" ").map(function(word) {
+
+        // Capitalize first letter of each word
+        word = word.toLocaleLowerCase();
+        return word.substring(0, 1).toLocaleUpperCase()
+                + word.substring(1, word.length);
+
+    }).join(" ");
+}
 
 // function descending(comparator) {
 //     return function(rec1, rec2) {
