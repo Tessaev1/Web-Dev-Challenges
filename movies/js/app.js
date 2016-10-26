@@ -7,6 +7,7 @@ var selectReport = document.getElementById("report-select");
 // generates a report when the user selects an option in the drop-down list
 selectReport.addEventListener("change", function(e) {
     var reportName = selectReport.value;
+    // set heading equal to the event target  
     var heading = Array.from(e.target).find(function(child) {
         return child.value === e.target.value;
     }).innerText;
@@ -22,23 +23,37 @@ selectReport.addEventListener("change", function(e) {
     }
 });
 
-// https://github.com/info343-a16/info343-in-class/blob/completed/dom/js/app.js
-function createElement(elemName, text, columnName) {
+// creates a column element
+function createColumnElement(elemName, text, columnName) {
+    var elem = document.createElement(elemName);
+    if (text) {
+        if (typeof MOVIES[0][columnName] === "number" || 
+            columnName.toLowerCase().includes("sales") ||
+            columnName.toLowerCase().includes("tickets")) {
+            elem.classList.add("num-col-heading");
+        }
+        elem.textContent = text;
+    }
+    return elem;
+}
+
+// creates a row element and formats it accordingly
+function createRowElement(elemName, text, columnName) {
     var elem = document.createElement(elemName);
     if (text) {
         var formattedText = text;
-        if (columnName != null) {
-            if (columnName.toLowerCase().includes("sales")) {
-                formattedText = formatCurrency(text);
-                elem.classList.add("sales-column");
-            } else if (columnName.toLowerCase().includes("ticket")) {
-                elem.classList.add("ticket-column");
-                formattedText = formatTickets(text);
-            } else if (columnName.toLowerCase().includes("released")) {
-                elem.classList.add("released-column");
-                formattedText = formatDate(text);
-            } 
-        }
+        if (columnName.toLowerCase().includes("sales")) {
+            formattedText = numeral(text).format('$0,0[.]00');
+            elem.classList.add("sales-column");
+        } else if (columnName.toLowerCase().includes("ticket")) {
+            elem.classList.add("ticket-column");
+            formattedText = numeral(text).format('0,0');
+        } else if (columnName.toLowerCase().includes("released")) {
+            elem.classList.add("released-column");
+            formattedText = moment(text).format("l");
+        } else if (columnName.toLowerCase().includes("year")) {
+            elem.classList.add("year-column");
+        } 
         elem.textContent = formattedText;
     }
     return elem;
@@ -48,7 +63,6 @@ var thead = document.querySelector("thead");
 var tbody = document.querySelector("tbody");
 
 // renders a table with the given row and column data
-// input: [{title: "Star Wars", distributor: "Warer"}, {...}, {...}]
 function render(rows) {
     var columnHeaders = Object.keys(rows[0]);
     thead.innerHTML = "";
@@ -56,14 +70,14 @@ function render(rows) {
 
     var tr = document.createElement("tr");
     columnHeaders.forEach(function(column) {
-        tr.appendChild(createElement("th", column.toTitleCase()));
+        tr.appendChild(createColumnElement("th", column.toTitleCase(), column));
         thead.appendChild(tr);
     });
 
     rows.forEach(function(row) {
         var tr = document.createElement("tr");
         columnHeaders.forEach(function(header) {
-            tr.appendChild(createElement("td", (row[header] || "N/A"), header));
+            tr.appendChild(createRowElement("td", (row[header] || "N/A"), header));
         });
         tbody.appendChild(tr);
     });
@@ -75,13 +89,10 @@ var starWars = MOVIES.filter(function(movie) {
 }).sort(compareLocale);
 
 // returns all movies that were released before Jan. 1st 2000 and made revenues between 2006 and 2015
-// var century = formatDate("2000-01-01T01:00:00Z");
+// sorted in ascending order (oldest at the top)
 var movies20thCentury = MOVIES.filter(function(movie) {
     return (movie.released < "2000-01-01T01:00:00Z") && (movie.year >= 2006 && movie.year <= 2015);
-});
-
-// sorts dates in ascending order (oldest at the top)
-movies20thCentury.sort(compareDate);
+}).sort(compareDate);
 
 // returns the average sales of each genre
 // output: [{ "genre" :"Comedy", "sales" : 1234}, {...}, {...}]
@@ -155,23 +166,10 @@ function compareDate(movie1, movie2) {
     return releasedCompare;
 }
 
-function formatCurrency(num) {
-    return numeral(num).format('$0,0[.]00');
-}
-
-function formatDate(date) {
-    return moment(date).format("l");
-}
-
-function formatTickets(num) {
-    return numeral(num).format('0,0');
-}
-
 // String to title case
 // Alex Bell-Towne gave me this function
 String.prototype.toTitleCase = function() {
     return this.split(" ").map(function(word) {
-
         // Capitalize first letter of each word
         word = word.toLocaleLowerCase();
         return word.substring(0, 1).toLocaleUpperCase()
@@ -179,9 +177,3 @@ String.prototype.toTitleCase = function() {
 
     }).join(" ");
 }
-
-// function descending(comparator) {
-//     return function(rec1, rec2) {
-//         return -(comparator(rec1, rec2));
-//     }
-// }

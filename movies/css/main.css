@@ -1,4 +1,6 @@
 .sales-column,
-.ticket-column {
+.ticket-column,
+.year-column,
+.num-col-heading {
     text-align: right;
 }
