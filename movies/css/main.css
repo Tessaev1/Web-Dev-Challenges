@@ -1,1 +1,6 @@
-/* add any custom style rules here */
+.sales-column,
+.ticket-column,
+.year-column,
+.num-col-heading {
+    text-align: right;
+}
