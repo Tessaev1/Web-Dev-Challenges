@@ -1,1 +1,87 @@
-/* add your own style rules here */
+.container {
+    padding: 0 40px;
+}
+
+#signin-form,
+#signup-form {
+    border: 3px solid #f1f1f1;
+    max-width: 500px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+#signin-heading,
+#signup-heading {
+    padding-bottom: 15px;
+}
+
+input[type=email], 
+input[type=password],
+input[type=text] {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.nav-stacked {
+    color: #fff;
+    cursor: pointer;
+}
+
+#sign-out-button {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+
+.message-board > div {
+    padding-bottom: 20px;
+}
+
+.message-content,
+.message-creation,
+.message-edit-creation,
+.glyphicon-pencil {
+    padding-left: 15px;
+}
+
+/*div > span {
+    width: 100px;
+}*/
+
+.edit-message {
+    padding-left: 100px; 
+}
+
+.message-board > div {
+    cursor: pointer;
+    position: relative;
+}
+
+.user-photo {
+    border-radius: 10%;
+    width: 50px;
+}
+
+.hidden {
+    display: none;
+}
+
+.glyphicon-refresh {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+}

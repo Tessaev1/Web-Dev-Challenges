@@ -1,9 +1,18 @@
-//this file is included in all pages, so use this for anything
-//that is common across all your pages, or functions that are
-//shared between more than one page
-"use strict";
+"use strict"; 
 
-//put your Firebase initialization here so that every page
-//can call the Firebase API
-//firebase.initializeApp(...);
+var spinner = document.querySelector(".glyphicon-refresh");
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyAJ_JSgcheno4OcE_LAkFDAx6-zwcCLu3Q",
+    authDomain: "slam-8558e.firebaseapp.com",
+    databaseURL: "https://slam-8558e.firebaseio.com",
+    storageBucket: "slam-8558e.appspot.com",
+    messagingSenderId: "69189010832"
+};
+firebase.initializeApp(config);
+
+function toggleFeedback() {
+    spinner.classList.toggle("hidden");
+}
 
