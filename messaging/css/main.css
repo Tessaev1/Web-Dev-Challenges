@@ -36,15 +36,16 @@ button {
     width: 100%;
 }
 
-.nav-stacked {
+.navbar-nav {
     color: #fff;
     cursor: pointer;
+    padding: 10px;
 }
 
-#sign-out-button {
-    position: absolute;
-    top: 0;
-    right: 15px;
+@media (min-width: 768px) {
+    #random-channel {
+        padding: 0 20px;
+    }
 }
 
 .message-board > div {
@@ -57,10 +58,6 @@ button {
 .glyphicon-pencil {
     padding-left: 15px;
 }
-
-/*div > span {
-    width: 100px;
-}*/
 
 .edit-message {
     padding-left: 100px; 

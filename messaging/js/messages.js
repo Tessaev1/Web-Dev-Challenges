@@ -1,8 +1,10 @@
 "use strict";
 
-var currentChannel = firebase.database().ref("general messages");
+var channelMessagesLimit = 100;
 var general = document.querySelector("#general-channel");
 var random = document.querySelector("#random-channel");
+var currentChannel, currentChannelLimited;
+changeChannel(general, "general messages");
 var messageForm = document.querySelector("#new-message-form");
 var messageInput = messageForm.querySelector(".new-message");
 var messageBoard = document.querySelector(".message-board");
@@ -34,8 +36,10 @@ random.addEventListener("click", function() {
 
 function changeChannel(channel, refName) {
     channel.style.fontWeight = 900;
+    setSpinnerHidden(false);
     currentChannel = firebase.database().ref(refName);
-    currentChannel.on("value", render);
+    currentChannelLimited = currentChannel.limitToLast(channelMessagesLimit);
+    currentChannelLimited.on("value", render);
 }
 
 messageForm.addEventListener("submit", function(evt) {
@@ -96,7 +100,7 @@ function renderMessage(snapshot) {
                     spanMessage.style.display = "";
 
                     // finds the message to be edited using its unique key and the current channel's ref name
-                    var messageContentRef = firebase.database().ref(currentChannel.path.o[0] + "/" + snapshot.key);
+                    var messageContentRef = firebase.database().ref(currentChannelLimited.path.o[0] + "/" + snapshot.key);
                     messageContentRef.update({content: input.value});
 
                     snapshot.ref.update({
@@ -149,11 +153,8 @@ function showEditTextbox(content) {
 function render(snapshot) {
     messageBoard.innerHTML = "";
     snapshot.forEach(renderMessage);
-    toggleFeedback();
+    setSpinnerHidden(true);
 }
-
-// call render() everytime there is a change to a database value
-currentChannel.on("value", render);
 
 // signs the user out, calling the onAuthStateChanged function above
 document.getElementById("sign-out-button").addEventListener("click", function() {

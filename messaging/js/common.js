@@ -12,7 +12,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
-function toggleFeedback() {
-    spinner.classList.toggle("hidden");
+// @param hidden: true or false
+function setSpinnerHidden(hidden) {
+    if (hidden) {
+        spinner.classList.add("hidden");
+    } else {
+        spinner.classList.remove("hidden");
+    }
 }
 
