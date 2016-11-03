@@ -12,9 +12,6 @@ signInForm.addEventListener("submit", function(evt) {
             window.location = "messages.html";
         })
         .catch(function(err) {
-            //for now, just show the error message in an alert
-            //but you should do something more user-friendly
-            //like display this in the page with appropriate styling
             alert(err.message);
         });
 

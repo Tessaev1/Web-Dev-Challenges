@@ -63,41 +63,65 @@ messageForm.addEventListener("submit", function(evt) {
     return false;
 });
 
-// https://github.com/info343-a16/info343-in-class/blob/completed/firebase/js/app.js
-function renderMessage(snapshot) {
-    var message = snapshot.val();
-    var div = document.createElement("div"); 
-
+function createUserPhotoElement(photoURL) {
     var userPhoto = document.createElement("img");
-    userPhoto.src = message.createdBy.photoURL;
+    userPhoto.src = photoURL;
     userPhoto.alt = "gravatar photo of user";
     userPhoto.classList.add("user-photo");
-    div.appendChild(userPhoto);
+    return userPhoto;
+}
 
-    var spanMessage = document.createElement("span");
-    spanMessage.textContent = message.content;
-    spanMessage.classList.add("message-content");
-    div.appendChild(spanMessage);
+function createImageColumn(photoURL) {
+    var col = document.createElement("div");
+    col.classList.add("col");
+    col.appendChild(createUserPhotoElement(photoURL));
 
-    var spanCreation = document.createElement("span");
-    spanCreation.textContent = moment(message.createdOn).fromNow() + 
-        " by " + 
-        (message.createdBy.displayName);
+    return col;
+}
 
-    spanCreation.classList.add("message-creation");
-    div.appendChild(spanCreation);
+function createContentColumn(message) {
+    var col = document.createElement("div");
+    col.classList.add("col");
+    col.classList.add("message-content-col");
+
+    var title = document.createElement("h4");
+    var messageSentOn = document.createElement("span");
+
+    title.classList.add("name");
+    title.textContent = message.createdBy.displayName;
+    messageSentOn.textContent = moment(message.createdOn).fromNow();
+
+    if (message.isEdited) {
+        messageSentOn.textContent += " (edited " + moment(message.editedOn).fromNow() + ")";
+    }
+
+    title.appendChild(messageSentOn);
+
+    var messageText = document.createElement("p");
+    messageText.textContent = message.content;
+
+    col.appendChild(title);
+    col.appendChild(messageText);
+    
+    return col;
+}
+
+function createEditColumn(message, messageElement) {
+    var col = document.createElement("div");
+    col.classList.add("col");
+    col.classList.add("edit-icons-col");
 
     if (currentUser.uid === message.createdBy.uid) {
         var spanEdit = document.createElement("span");
         spanEdit.classList.add("glyphicon", "glyphicon-pencil");
 
         spanEdit.addEventListener("click", function() {
-            var input = showEditTextbox(spanMessage);
+            var input = showEditTextbox(messageElement);
             input.addEventListener("keyup", function(e) {
                 if (e.keyCode == 13) {
-                    spanMessage.parentNode.removeChild(input);
-                    spanMessage.innerHTML = input.value;
-                    spanMessage.style.display = "";
+                    messageElement.parentNode.removeChild(input);
+                    messageElement.innerHTML = input.value;
+                    messageElement.style.display = "";
 
                     // finds the message to be edited using its unique key and the current channel's ref name
                     var messageContentRef = firebase.database().ref(currentChannelLimited.path.o[0] + "/" + snapshot.key);
@@ -111,14 +135,7 @@ function renderMessage(snapshot) {
             })
         }); 
 
-        if (message.isEdited) {
-            var spanEditCreation = document.createElement("span");
-            spanEditCreation.textContent = "(edited " + moment(message.editedOn).fromNow() + ")";
-            spanEditCreation.classList.add("message-edit-creation");
-            div.appendChild(spanEditCreation);
-        }
-
-        div.appendChild(spanEdit);
+        col.appendChild(spanEdit);
 
         var spanDelete = document.createElement("span");
         spanDelete.classList.add("glyphicon", "glyphicon-trash");
@@ -131,10 +148,24 @@ function renderMessage(snapshot) {
             }
         });
 
-        div.appendChild(spanDelete);
+        col.appendChild(spanDelete);
     }    
 
-    messageBoard.appendChild(div);
+    return col;
+}
+
+// https://github.com/info343-a16/info343-in-class/blob/completed/firebase/js/app.js
+function renderMessage(snapshot) {
+    var message = snapshot.val();
+
+    var row = document.createElement("div"); 
+    row.classList.add("row");
+    row.appendChild(createImageColumn(message.createdBy.photoURL));
+    row.appendChild(createContentColumn(message));
+    var messageElement = row.querySelector("p");
+    row.appendChild(createEditColumn(message, messageElement));
+
+    messageBoard.appendChild(row);
 }
 
 // http://stackoverflow.com/questions/6814062/using-javascript-to-change-some-text-into-an-input-field-when-clicked-on

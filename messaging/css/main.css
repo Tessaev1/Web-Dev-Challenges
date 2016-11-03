@@ -52,6 +52,10 @@ button {
     padding-bottom: 20px;
 }
 
+#new-message-form {
+    padding-bottom: 20px;
+}
+
 .message-content,
 .message-creation,
 .message-edit-creation,
@@ -81,4 +85,33 @@ button {
     position: fixed;
     top: 50%;
     right: 50%;
+}
+
+.row {
+    display: flex;
+    flex-flow: row;
+    flex: 0;
+}
+
+.col {
+    padding: 0px 5px;
+}
+
+h4 > span,
+.col > span {
+    color: gray;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.name {
+    margin-top: 0;
+}
+
+.edit-icons-col {
+    flex: 0 0 64px;
+}
+
+.message-content-col {
+    flex: 1 1 500px;
 }
