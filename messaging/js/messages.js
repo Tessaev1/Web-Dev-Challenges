@@ -106,7 +106,8 @@ function createContentColumn(message) {
     return col;
 }
 
-function createEditColumn(message, messageElement) {
+function createEditColumn(snapshot, messageElement) {
+    var message = snapshot.val();
     var col = document.createElement("div");
     col.classList.add("col");
     col.classList.add("edit-icons-col");
@@ -163,7 +164,7 @@ function renderMessage(snapshot) {
     row.appendChild(createImageColumn(message.createdBy.photoURL));
     row.appendChild(createContentColumn(message));
     var messageElement = row.querySelector("p");
-    row.appendChild(createEditColumn(message, messageElement));
+    row.appendChild(createEditColumn(snapshot,messageElement));
 
     messageBoard.appendChild(row);
 }
