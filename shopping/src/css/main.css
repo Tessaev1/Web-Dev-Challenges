@@ -1,1 +1,8 @@
-/* add your own style rules here */
+.mdl-layout__header {
+    background-color: #593837;
+}
+
+.mdl-js-textfield,
+.mdl-list__item {
+    padding: 16px 40px;
+}
