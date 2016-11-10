@@ -1,8 +1,26 @@
 .mdl-layout__header {
-    background-color: #593837;
+    background-color: #000;
 }
 
 .mdl-js-textfield,
-.mdl-list__item {
-    padding: 16px 40px;
+.row-genres {
+    padding: 16px 20px;
+    max-width: 250px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
+
+.row-movies {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1;
+}
+
+.col-movie-card {
+    margin: 5px;
+    border: 1px solid #AAA;
+    width: 48%;
 }
