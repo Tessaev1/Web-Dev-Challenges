@@ -23,7 +23,7 @@ export default class extends React.Component {
                                 <i className="material-icons">search</i>
                             </IndexLink>
                             <IndexLink className="mdl-navigation__link" to="/cart" activeClassName="active">
-                                <i className="material-icons">add_shopping_cart</i>
+                                <i className="material-icons">shopping_cart</i>
                             </IndexLink>
                         </nav>
                     </div>

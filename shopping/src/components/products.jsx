@@ -4,12 +4,14 @@ import "whatwg-fetch";
 
 import Movie from "./movie.jsx";
 import Genre from "./genre.jsx";
+import SearchForm from "./search-form.jsx";
 
 // https://api.themoviedb.org/3/discover/movie?api_key=your-api-key
 const APIKEY = "bc6e1e26758495c5b36c383a58eb8b73";
 const BASE_URL = "https://api.themoviedb.org/3"
 const DISCOVER_API = BASE_URL + "/discover/movie?api_key=" + APIKEY;
 const GENRES_API = BASE_URL + "/genre/movie/list?api_key=" + APIKEY;
+const SEARCH_API = BASE_URL + "/search/movie?api_key=" + APIKEY;
 
 export default class extends React.Component {
     constructor(props) {
@@ -29,10 +31,28 @@ export default class extends React.Component {
             // .catch(err => alert(err.message));
     }
 
+    handleSearch(query, page=1) {
+        fetch(SEARCH_API + "&query=" + query + "&page=" + page)
+            .then(response => response.json())
+            .then(data => this.setState({
+                movies: data,
+                query: query,
+                page: page
+            }));
+    }
+
+    handleGenreClick(genre) {
+        fetch(DISCOVER_API + "&with_genres=" + genre)
+            .then(response => response.json())
+            .then(data => this.setState({
+                movies: data
+            }));
+    }
+
     render() {
         var genres, totalPages, movies;
         if (this.state.genres) {
-            genres = this.state.genres.genres.map(genre => <Genre key={genre.id} genre={genre} />);
+            genres = this.state.genres.genres.map(genre => <Genre key={genre.id} genre={genre} handleClick={genre => this.handleGenreClick(genre)} />);
         }
         if (this.state.movies) {
             totalPages = (<p>{this.state.movies.total_pages} pages</p>)
@@ -42,15 +62,11 @@ export default class extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <form action="#">
-                            <div className="mdl-textfield mdl-js-textfield">
-                                <input className="mdl-textfield__input" type="text" placeholder="Search"></input>
-                            </div>
-                        </form>
+                        <SearchForm onSearch={query => this.handleSearch(query)} />
                         <div className="row-genres">
                             <a className="mdl-navigation__link" href="#">Popular</a>
                         </div>
-                        {genres} 
+                        {genres}
                     </div>
                     
                     <div className="col">
@@ -66,23 +82,3 @@ export default class extends React.Component {
         );
     }
 }
-
-
-            // <div>
-            //     <div className="mdl-layout__drawer">
-            //         <span className="mdl-layout-title">Movie Shopper</span>
-            //         <nav className="mdl-navigation">
-            //             <form action="#">
-            //                 <div className="mdl-textfield mdl-js-textfield">
-            //                     <input className="mdl-textfield__input" type="text" placeholder="Search"></input>
-            //                 </div>
-            //             </form>
-            //             <a className="mdl-navigation__link" href="#">Popular</a>
-            //             {
-            //                 this.state.genres.genres.map(genre => (
-            //                     <a className="mdl-navigation__link" href="#" key={genre.id}>
-            //                     {genre.name}</a>))
-            //             }
-            //         </nav>
-            //     </div>
-
