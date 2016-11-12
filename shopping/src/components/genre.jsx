@@ -1,4 +1,5 @@
 import React from "react";
+import {Link, IndexLink} from "react-router";
 
 export default class extends React.Component {
     constructor(props) {
@@ -12,8 +13,8 @@ export default class extends React.Component {
     render() {
         return (
             <div className="row-genres">
-                <a className="mdl-navigation__link" href="#" key={this.props.genre.id} 
-                    onClick={event => this.handleClick(this.props.genre.id)}>{this.props.genre.name}</a>
+                <Link className="mdl-navigation__link" href="#" activeClassName="active" key={this.props.genre.id} 
+                    onClick={event => this.handleClick(this.props.genre.id)}>{this.props.genre.name}</Link>
             </div>
         );
     }

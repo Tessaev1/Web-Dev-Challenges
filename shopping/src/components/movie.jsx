@@ -8,11 +8,17 @@ export default class extends React.Component {
     }
 
     render() {
+        var poster;
+        if (this.props.movie.poster_path) {
+            poster = IMG_BASE_URL + this.props.movie.poster_path;
+        } else {
+            poster = "../img/img_not_available.jpg";
+        }
         return (
             <div className="col-movie-card">
                 <div className="row">
                     <div className="col-img">
-                        <img src={IMG_BASE_URL + this.props.movie.poster_path} alt="movie poster"/> 
+                        <img src={poster} alt="movie poster"/> 
                     </div>
                     <div className="col-content">
                         <h4>{this.props.movie.title}</h4>

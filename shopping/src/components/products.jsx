@@ -2,6 +2,7 @@ import React from "react";
 
 import "whatwg-fetch";
 
+import {Link, IndexLink} from "react-router";
 import Movie from "./movie.jsx";
 import Genre from "./genre.jsx";
 import SearchForm from "./search-form.jsx";
@@ -12,6 +13,8 @@ const BASE_URL = "https://api.themoviedb.org/3"
 const DISCOVER_API = BASE_URL + "/discover/movie?api_key=" + APIKEY;
 const GENRES_API = BASE_URL + "/genre/movie/list?api_key=" + APIKEY;
 const SEARCH_API = BASE_URL + "/search/movie?api_key=" + APIKEY;
+
+var currentAPI;
 
 export default class extends React.Component {
     constructor(props) {
@@ -27,12 +30,15 @@ export default class extends React.Component {
 
         fetch(DISCOVER_API)
             .then(response => response.json())
-            .then(data => this.setState({movies: data}));
+            .then(data => this.setState({
+                movies: data
+            }));
             // .catch(err => alert(err.message));
     }
 
     handleSearch(query, page=1) {
-        fetch(SEARCH_API + "&query=" + query + "&page=" + page)
+        currentAPI = SEARCH_API + "&query=" + query + "&page=" + page;
+        fetch(currentAPI)
             .then(response => response.json())
             .then(data => this.setState({
                 movies: data,
@@ -41,12 +47,27 @@ export default class extends React.Component {
             }));
     }
 
-    handleGenreClick(genre) {
-        fetch(DISCOVER_API + "&with_genres=" + genre)
+    handleGenreClick(genreID, page=1) {
+        if (genreID === -1) {
+            currentAPI = DISCOVER_API + "&page=" + page;
+        } else {
+            currentAPI = DISCOVER_API + "&with_genres=" + genreID + "&page=" + page;
+        }
+        fetch(currentAPI)
             .then(response => response.json())
             .then(data => this.setState({
-                movies: data
+                movies: data,
+                currentGenre: genreID,
+                page: page
             }));
+    }
+
+    handlePageChange(page) {
+        if (currentAPI.includes(SEARCH_API)) {
+            this.handleSearch(this.state.query, page)
+        } else {
+            this.handleGenreClick(this.state.currentGenre, page)
+        }
     }
 
     render() {
@@ -55,24 +76,35 @@ export default class extends React.Component {
             genres = this.state.genres.genres.map(genre => <Genre key={genre.id} genre={genre} handleClick={genre => this.handleGenreClick(genre)} />);
         }
         if (this.state.movies) {
-            totalPages = (<p>{this.state.movies.total_pages} pages</p>)
+            totalPages = (<span>{this.state.movies.total_pages}</span>)
             movies = this.state.movies.results.map(movie => <Movie key={movie.id} movie={movie} />);
         }
+        // links not active?
+        // default pictures not rendering
+        // pull buttons into function
         return (
             <div className="container">
                 <div className="row">
                     <div className="col">
                         <SearchForm onSearch={query => this.handleSearch(query)} />
                         <div className="row-genres">
-                            <a className="mdl-navigation__link" href="#">Popular</a>
+                            <Link className="mdl-navigation__link" href="#" activeClassName="active" onClick={() => this.handleGenreClick(-1)}>Popular</Link>
                         </div>
                         {genres}
                     </div>
                     
                     <div className="col">
-                        <h1>Products View</h1>
-                        <p>some nifty products for sale</p>
-                        {totalPages}
+                        <button className="btn btn-default"
+                            onClick={() => this.handlePageChange(this.state.page-1)}
+                            disabled={!this.state.page || this.state.page * 30 > this.state.movies.total_pages}>
+                            Previous Page
+                        </button>
+                        <h4>{this.state.page} of {totalPages}</h4>
+                        <button className="btn btn-default"
+                            onClick={() => this.handlePageChange(this.state.page+1)}
+                            disabled={!this.state.page || this.state.page * 30 > this.state.movies.total_pages}>
+                            Next Page
+                        </button>
                         <div className="row-movies">
                             {movies}
                         </div> 
