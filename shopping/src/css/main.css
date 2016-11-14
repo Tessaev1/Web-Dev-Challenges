@@ -37,6 +37,10 @@
     bottom: 5px;
 }
 
-/*.mdl-navigation__link:active {
-    text-decoration: underline;
-}*/
+.row-genres.active {
+    background-color: #000;
+}
+
+.row-genres.active > .mdl-navigation__link {
+    color: #FFF;
+}

@@ -7,6 +7,14 @@ export default class extends React.Component {
         super(props);
     }
 
+    truncate(p) {
+        if (p.length > 200) {
+            return p.substring(0,200) + "...";
+        } else {
+            return p;
+        }
+    }
+
     render() {
         var poster;
         if (this.props.movie.poster_path) {
@@ -23,8 +31,7 @@ export default class extends React.Component {
                     </div>
                     <div className="col-content">
                         <h4 className="mdl-card__title-text">{this.props.movie.title}</h4>
-                        <p className="mdl-card__supporting-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad asperiores Soluta perspiciatis quisquam iusto tenetur beatae ad consectetur ratione eveniet quasi!
-                        </p>
+                        <p className="mdl-card__supporting-text">{this.truncate(this.props.movie.overview)}</p>
                         <div className="mdl-card__actions mdl-card--border">
                             <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                 BUY ON DVD 
@@ -39,5 +46,3 @@ export default class extends React.Component {
         );
     }
 }
-
-// <p>{this.props.movie.overview}</p>

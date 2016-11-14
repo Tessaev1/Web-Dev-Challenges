@@ -43,6 +43,9 @@ export default class extends React.Component {
     }
 
     handleGenreClick(genreID, page=1) {
+        this.setState({
+            activeGenre: genreID
+        });
         if (genreID === -1) {
             currentAPI = DISCOVER_API + "&page=" + page;
         } else {
@@ -69,7 +72,7 @@ export default class extends React.Component {
     render() {
         var genres, totalPages, movies;
         if (this.state.genres) {
-            genres = this.state.genres.genres.map(genre => <Genre key={genre.id} genre={genre} handleClick={genre => this.handleGenreClick(genre)} />);
+            genres = this.state.genres.genres.map(genre => <Genre key={genre.id} active={this.state.activeGenre === genre.id} genre={genre} handleClick={genre => this.handleGenreClick(genre)} />);
         }
         if (this.state.movies) {
             totalPages = (<span>{this.state.movies.total_pages}</span>)
@@ -81,7 +84,7 @@ export default class extends React.Component {
                 <div className="row">
                     <div className="col">
                         <SearchForm onSearch={query => this.handleSearch(query)} />
-                        <div className="row-genres">
+                        <div className={"row-genres " + ((this.state.activeGenre === -1) ? "active" : "")}>
                             <a className="mdl-navigation__link" href="#" onClick={() => this.handleGenreClick(-1)}>Popular</a>
                         </div>
                         {genres}
