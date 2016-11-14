@@ -7,7 +7,6 @@ import Movie from "./movie.jsx";
 import Genre from "./genre.jsx";
 import SearchForm from "./search-form.jsx";
 
-// https://api.themoviedb.org/3/discover/movie?api_key=your-api-key
 const APIKEY = "bc6e1e26758495c5b36c383a58eb8b73";
 const BASE_URL = "https://api.themoviedb.org/3"
 const DISCOVER_API = BASE_URL + "/discover/movie?api_key=" + APIKEY;
@@ -25,15 +24,10 @@ export default class extends React.Component {
     componentDidMount() {
         fetch(GENRES_API)
             .then(response => response.json())
-            .then(data => this.setState({genres: data}));
-            // .catch
+            .then(data => this.setState({genres: data}))
+            .catch(err => alert(err.message));
 
-        fetch(DISCOVER_API)
-            .then(response => response.json())
-            .then(data => this.setState({
-                movies: data
-            }));
-            // .catch(err => alert(err.message));
+        this.handleGenreClick(-1, 1);
     }
 
     handleSearch(query, page=1) {
@@ -44,7 +38,8 @@ export default class extends React.Component {
                 movies: data,
                 query: query,
                 page: page
-            }));
+            }))
+            .catch(err => alert(err.message));
     }
 
     handleGenreClick(genreID, page=1) {
@@ -59,7 +54,8 @@ export default class extends React.Component {
                 movies: data,
                 currentGenre: genreID,
                 page: page
-            }));
+            }))
+            .catch(err => alert(err.message));
     }
 
     handlePageChange(page) {
@@ -79,32 +75,32 @@ export default class extends React.Component {
             totalPages = (<span>{this.state.movies.total_pages}</span>)
             movies = this.state.movies.results.map(movie => <Movie key={movie.id} movie={movie} />);
         }
-        // links not active?
-        // default pictures not rendering
-        // pull buttons into function
+
         return (
             <div className="container">
                 <div className="row">
                     <div className="col">
                         <SearchForm onSearch={query => this.handleSearch(query)} />
                         <div className="row-genres">
-                            <Link className="mdl-navigation__link" href="#" activeClassName="active" onClick={() => this.handleGenreClick(-1)}>Popular</Link>
+                            <a className="mdl-navigation__link" href="#" onClick={() => this.handleGenreClick(-1)}>Popular</a>
                         </div>
                         {genres}
                     </div>
                     
                     <div className="col">
-                        <button className="btn btn-default"
-                            onClick={() => this.handlePageChange(this.state.page-1)}
-                            disabled={!this.state.page || this.state.page * 30 > this.state.movies.total_pages}>
-                            Previous Page
-                        </button>
-                        <h4>{this.state.page} of {totalPages}</h4>
-                        <button className="btn btn-default"
-                            onClick={() => this.handlePageChange(this.state.page+1)}
-                            disabled={!this.state.page || this.state.page * 30 > this.state.movies.total_pages}>
-                            Next Page
-                        </button>
+                        <div className="page-nav">
+                            <button className="mdl-button mdl-js-button"
+                                onClick={() => this.handlePageChange(this.state.page-1)}
+                                disabled={!this.state.page || this.state.page === 1}>
+                                <i className="material-icons nav-arrows">keyboard_arrow_left</i>
+                            </button>
+                            <span>{this.state.page} of {totalPages}</span>
+                            <button className="mdl-button mdl-js-button"
+                                onClick={() => this.handlePageChange(this.state.page+1)}
+                                disabled={!this.state.page || this.state.page === this.state.movies.total_pages}>
+                                <i className="material-icons nav-arrows">keyboard_arrow_right</i>
+                            </button>
+                        </div>
                         <div className="row-movies">
                             {movies}
                         </div> 

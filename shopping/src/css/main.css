@@ -19,12 +19,24 @@
     flex: 1;
 }
 
-.col-movie-card {
+.demo-card-wide {
     margin: 5px;
-    border: 1px solid #AAA;
     width: 550px;
 }
 
-.active {
-    text-decoration: underline;
+.mdl-card__title-text {
+    padding: 16px;
 }
+
+.mdl-card__supporting-text {
+    padding: 0 16px;
+}
+
+.mdl-card--border {
+    position: absolute;
+    bottom: 5px;
+}
+
+/*.mdl-navigation__link:active {
+    text-decoration: underline;
+}*/

@@ -9,7 +9,6 @@ export default class extends React.Component {
         super(props);
     }
 
-    // movie genres should be in the product component, not part of the main frame
     // https://webdesign.tutsplus.com/tutorials/learning-material-design-lite-navigation--cms-24565
     render() {
         return (
