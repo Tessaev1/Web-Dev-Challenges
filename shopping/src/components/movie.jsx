@@ -33,12 +33,7 @@ export default class extends React.Component {
                         <h4 className="mdl-card__title-text">{this.props.movie.title}</h4>
                         <p className="mdl-card__supporting-text">{this.truncate(this.props.movie.overview)}</p>
                         <div className="mdl-card__actions mdl-card--border">
-                            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                BUY ON DVD 
-                            </a>
-                            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                BUY ON BLU-RAY 
-                            </a>
+                            {this.props.children}
                         </div>
                     </div> 
                 </div>
@@ -46,3 +41,10 @@ export default class extends React.Component {
         );
     }
 }
+
+// <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+//     BUY ON DVD 
+// </button>
+// <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+//     BUY ON BLU-RAY 
+// </button>

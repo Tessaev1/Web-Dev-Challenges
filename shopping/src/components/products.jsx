@@ -6,6 +6,7 @@ import {Link, IndexLink} from "react-router";
 import Movie from "./movie.jsx";
 import Genre from "./genre.jsx";
 import SearchForm from "./search-form.jsx";
+import {store, addToCart} from "./shared-state.js";
 
 const APIKEY = "bc6e1e26758495c5b36c383a58eb8b73";
 const BASE_URL = "https://api.themoviedb.org/3"
@@ -76,9 +77,16 @@ export default class extends React.Component {
         }
         if (this.state.movies) {
             totalPages = (<span>{this.state.movies.total_pages}</span>)
-            movies = this.state.movies.results.map(movie => <Movie key={movie.id} movie={movie} />);
+            movies = this.state.movies.results.map(movie => 
+                <Movie key={movie.id} movie={movie}>
+                    <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                        onClick={() => store.dispatch(addToCart(movie))}>BUY ON DVD
+                    </button>
+                    <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+                        onClick={() => store.dispatch(addToCart(movie))}>BUY ON BLU-RAY
+                    </button>
+                </Movie>);
         }
-
         return (
             <div className="container">
                 <div className="row">
