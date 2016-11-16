@@ -41,10 +41,3 @@ export default class extends React.Component {
         );
     }
 }
-
-// <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-//     BUY ON DVD 
-// </button>
-// <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-//     BUY ON BLU-RAY 
-// </button>

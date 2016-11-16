@@ -1,46 +1,52 @@
 .mdl-layout__header {
-    background-color: #000;
-}
+  background-color: #000; }
 
 .mdl-js-textfield,
 .row-genres {
-    padding: 16px 20px;
-    max-width: 150px;
-}
+  padding: 16px 20px;
+  max-width: 150px; }
 
 .row {
-    display: flex;
-    flex: 1;
-}
+  display: flex;
+  flex: 1; }
 
 .row-movies {
-    display: flex;
-    flex-flow: row wrap;
-    flex: 1;
-}
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1; }
 
 .demo-card-wide {
-    margin: 5px;
-    width: 550px;
-}
+  margin: 5px;
+  width: 550px; }
 
 .mdl-card__title-text {
-    padding: 16px;
-}
+  padding: 16px; }
 
 .mdl-card__supporting-text {
-    padding: 0 16px;
-}
+  padding: 0 16px; }
 
 .mdl-card--border {
-    position: absolute;
-    bottom: 5px;
-}
+  position: absolute;
+  bottom: 5px; }
 
 .row-genres.active {
-    background-color: #000;
-}
+  background-color: #000; }
+  .row-genres.active .mdl-navigation__link {
+    color: #FFF; }
 
-.row-genres.active > .mdl-navigation__link {
-    color: #FFF;
-}
+.container-cart {
+  margin-right: 20px; }
+
+.row-cart-header,
+.row-cart-item {
+  display: flex;
+  flex: 1;
+  justify-content: space-between; }
+
+.row-cart-header {
+  font-weight: 700; }
+
+.col-movie-card {
+  flex-basis: 40em; }
+
+/*# sourceMappingURL=main.css.map */

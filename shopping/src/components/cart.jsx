@@ -30,22 +30,41 @@ export default class extends React.Component {
         this.unsub();
     }
 
+    /*
+    () after arrow to build table
+    first element tr
+    td for each column inside tr
+    movie inside first td
+    */
     render() {
         var movies;
         if (this.state.cart) {
-            movies = this.state.cart.map(record =>
-            <Movie key={record.id} movie={record}>
-                <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                    onClick={() => store.dispatch(removeFromCart(record.id))}>Remove
-                </button>
-            </Movie>);
+            movies = this.state.cart.map(record => (
+                <div className="row-cart-item">
+                    <div className="col">
+                        <Movie key={record.id} movie={record}>
+                            <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+                                onClick={() => store.dispatch(removeFromCart(record.id))}>Remove
+                            </button>
+                        </Movie>
+                    </div>
+                    <div className="col">format</div>
+                    <div className="col">quantity</div>
+                    <div className="col">price</div> 
+                </div>
+            ));
         }
         return (
-            <div className="container">
-                <h1>Shopping Cart</h1>
-                <div className="movie-list">
-                    {movies}                
+            <div className="container-cart">
+                <h2>Shopping Cart</h2>
+                <div className="row-cart-header">
+                    <div className="col-movie-card"></div>
+                    <div className="col">Format</div>
+                    <div className="col">Quantity</div>
+                    <div className="col">Price</div>                
                 </div>
+                <hr/>
+                {movies}
             </div>
         );
     }

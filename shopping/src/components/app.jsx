@@ -37,6 +37,7 @@ export default class extends React.Component {
                             </IndexLink>
                             <IndexLink className="mdl-navigation__link" to="/cart" activeClassName="active">
                                 <i className="material-icons">shopping_cart</i>
+                                ({this.state.cart.length})
                             </IndexLink>
                         </nav>
                     </div>
