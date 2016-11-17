@@ -80,10 +80,10 @@ export default class extends React.Component {
             movies = this.state.movies.results.map(movie => 
                 <Movie key={movie.id} movie={movie}>
                     <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                        onClick={() => store.dispatch(addToCart(movie))}>BUY ON DVD
+                        onClick={() => store.dispatch(addToCart(movie, "DVD", 1, 14.95))}>BUY ON DVD
                     </button>
-                    <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                        onClick={() => store.dispatch(addToCart(movie))}>BUY ON BLU-RAY
+                    <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                        onClick={() => store.dispatch(addToCart(movie, "Blu-ray", 1, 19.95))}>BUY ON BLU-RAY
                     </button>
                 </Movie>);
         }
