@@ -1,1 +1,46 @@
-/* add your own style rules here */
+.mdl-layout__header {
+    background-color: #000;
+}
+
+.mdl-js-textfield,
+.row-genres {
+    padding: 16px 20px;
+    max-width: 150px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
+
+.row-movies {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1;
+}
+
+.demo-card-wide {
+    margin: 5px;
+    width: 550px;
+}
+
+.mdl-card__title-text {
+    padding: 16px;
+}
+
+.mdl-card__supporting-text {
+    padding: 0 16px;
+}
+
+.mdl-card--border {
+    position: absolute;
+    bottom: 5px;
+}
+
+.row-genres.active {
+    background-color: #000;
+}
+
+.row-genres.active > .mdl-navigation__link {
+    color: #FFF;
+}
