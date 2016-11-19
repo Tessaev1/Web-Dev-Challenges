@@ -56,8 +56,17 @@
     justify-content: space-between;
 }
 
-.row-cart-header {
+.row-cart-header,
+.row-cart-footer {
     font-weight: 700;
+}
+
+.row-cart-footer {
+    .col {
+        position: absolute;
+        right: 20px;
+        padding-bottom: 20px;
+    }
 }
 
 .col-movie-card {
