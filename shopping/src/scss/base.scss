@@ -1,5 +1,7 @@
+$nav-color: #512D34;
+
 .mdl-layout__header {
-    background-color: #000;
+    background-color: $nav-color;
 }
 
 .mdl-js-textfield,
@@ -22,23 +24,45 @@
 .demo-card-wide {
     margin: 5px;
     width: 550px;
-}
 
-.mdl-card__title-text {
-    padding: 16px;
-}
+    .mdl-card__title-text {
+        padding: 16px;
+    }
 
-.mdl-card__supporting-text {
-    padding: 0 16px;
-}
+    .mdl-card__supporting-text {
+        padding: 0 16px;
+    }
 
-.mdl-card--border {
-    position: absolute;
-    bottom: 5px;
+    .small-screen {
+        flex-flow: column;
+        
+        .img-wide {
+            background-position: center;
+            height: 200px;
+        }
+
+        .mdl-card__title-text {
+            position: absolute;
+            top: 150px;
+            color: #FFF;
+        }
+
+        .mdl-card__supporting-text {
+            padding: 16px 16px;
+            margin: 0;
+        } 
+    }
+
+    .large-screen {
+        .mdl-card--border {
+            position: absolute;
+            bottom: 5px;
+        }  
+    }
 }
 
 .row-genres.active {
-    background-color: #000;
+    background-color: $nav-color;
 
     .mdl-navigation__link {
         color: #FFF;
@@ -54,6 +78,11 @@
     display: flex;
     flex: 1;
     justify-content: space-between;
+
+    .quantity-button {
+        min-width: 50px;
+        padding: 0;
+    }
 }
 
 .row-cart-header,
@@ -70,5 +99,5 @@
 }
 
 .col-movie-card {
-    flex-basis: 40em;
+    flex-basis: 37em;
 }

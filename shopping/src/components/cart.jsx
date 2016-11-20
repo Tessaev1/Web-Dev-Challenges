@@ -26,21 +26,37 @@ export default class extends React.Component {
         return total;
     }
 
+    handleQuantityChange(item, quantity) {
+        item.quantity = quantity;
+        this.forceUpdate();
+    }
+
     render() {
         var movies;
         if (this.state.cart) {
-            movies = this.state.cart.map(record => (
-                <div className="row-cart-item" key={record.id}>
+            movies = this.state.cart.map(item => (
+                <div className="row-cart-item" key={item.id}>
                     <div className="col">
-                        <Movie key={record.id} movie={record.movie}>
+                        <Movie key={item.id} movie={item.movie}>
                             <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                                onClick={() => store.dispatch(removeFromCart(record.id))}>Remove
+                                onClick={() => store.dispatch(removeFromCart(item.id))}>Remove
                             </button>
                         </Movie>
                     </div>
-                    <div className="col">{record.format}</div>
-                    <div className="col">{record.quantity}</div>
-                    <div className="col">{numeral(record.price * record.quantity).format('$0,0.00')}</div> 
+                    <div className="col">{item.format}</div>
+                    <div className="col">
+                        <button className="mdl-button mdl-js-button quantity-button"
+                            onClick={() => this.handleQuantityChange(item, item.quantity-1)}
+                            disabled={item.quantity === 1}>
+                            <i className="material-icons">remove_circle_outline</i>
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button className="mdl-button mdl-js-button quantity-button"
+                            onClick={() => this.handleQuantityChange(item, item.quantity+1)}>
+                            <i className="material-icons">add_circle_outline</i>
+                        </button>
+                    </div>
+                    <div className="col">{numeral(item.price * item.quantity).format('$0,0.00')}</div> 
                 </div>
             ));
         }

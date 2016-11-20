@@ -1,5 +1,5 @@
 .mdl-layout__header {
-  background-color: #000; }
+  background-color: #512D34; }
 
 .mdl-js-textfield,
 .row-genres {
@@ -18,19 +18,28 @@
 .demo-card-wide {
   margin: 5px;
   width: 550px; }
-
-.mdl-card__title-text {
-  padding: 16px; }
-
-.mdl-card__supporting-text {
-  padding: 0 16px; }
-
-.mdl-card--border {
-  position: absolute;
-  bottom: 5px; }
+  .demo-card-wide .mdl-card__title-text {
+    padding: 16px; }
+  .demo-card-wide .mdl-card__supporting-text {
+    padding: 0 16px; }
+  .demo-card-wide .small-screen {
+    flex-flow: column; }
+    .demo-card-wide .small-screen .img-wide {
+      background-position: center;
+      height: 200px; }
+    .demo-card-wide .small-screen .mdl-card__title-text {
+      position: absolute;
+      top: 150px;
+      color: #FFF; }
+    .demo-card-wide .small-screen .mdl-card__supporting-text {
+      padding: 16px 16px;
+      margin: 0; }
+  .demo-card-wide .large-screen .mdl-card--border {
+    position: absolute;
+    bottom: 5px; }
 
 .row-genres.active {
-  background-color: #000; }
+  background-color: #512D34; }
   .row-genres.active .mdl-navigation__link {
     color: #FFF; }
 
@@ -42,6 +51,10 @@
   display: flex;
   flex: 1;
   justify-content: space-between; }
+  .row-cart-header .quantity-button,
+  .row-cart-item .quantity-button {
+    min-width: 50px;
+    padding: 0; }
 
 .row-cart-header,
 .row-cart-footer {
@@ -53,6 +66,6 @@
   padding-bottom: 20px; }
 
 .col-movie-card {
-  flex-basis: 40em; }
+  flex-basis: 37em; }
 
 /*# sourceMappingURL=main.css.map */
