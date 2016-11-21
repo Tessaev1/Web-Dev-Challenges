@@ -33,8 +33,8 @@ export default class extends React.Component {
                                 <i className="material-icons">search</i>
                             </IndexLink>
                             <IndexLink className="mdl-navigation__link" to="/cart" activeClassName="active">
-                                <i className="material-icons">shopping_cart</i>
-                                ({this.state.cart.length})
+                                <span className="mdl-badge" data-badge={this.state.cart.length}>                                <i className="material-icons">shopping_cart</i>
+                                </span>
                             </IndexLink>
                         </nav>
                     </div>

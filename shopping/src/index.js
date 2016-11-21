@@ -7,6 +7,8 @@ import Products from "./components/products.jsx";
 
 import {Router, Route, IndexRoute, hashHistory} from "react-router";
 
+"use strict";
+
 var router = (
     <Router history={hashHistory}>
         <Route path="/" component={App}>

@@ -1,7 +1,11 @@
-$nav-color: #512D34;
+$nav-color: #0B3C49;
 
 .mdl-layout__header {
     background-color: $nav-color;
+}
+
+.mdl-badge[data-badge]:after {
+    background-color: #D64933;
 }
 
 .mdl-js-textfield,
@@ -27,6 +31,19 @@ $nav-color: #512D34;
 
     .mdl-card__title-text {
         padding: 16px;
+        width: 300px;
+    }
+
+    .movie-rating {
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        font-size: 18px;
+
+        .movie-rating-icon {
+            vertical-align: middle;
+            padding: 0 0 4px 3px;
+        }
     }
 
     .mdl-card__supporting-text {
@@ -70,7 +87,7 @@ $nav-color: #512D34;
 }
 
 .container-cart {
-    margin-right: 20px;
+    margin: 0 20px 0 10px;
 }
 
 .row-cart-header,

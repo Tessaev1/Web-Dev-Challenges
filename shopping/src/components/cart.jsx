@@ -33,7 +33,7 @@ export default class extends React.Component {
 
     render() {
         var movies;
-        if (this.state.cart) {
+        if (this.state.cart.length > 0) {
             movies = this.state.cart.map(item => (
                 <div className="row-cart-item" key={item.id}>
                     <div className="col">
@@ -59,6 +59,10 @@ export default class extends React.Component {
                     <div className="col">{numeral(item.price * item.quantity).format('$0,0.00')}</div> 
                 </div>
             ));
+        } else {
+            movies = (
+                <h4>There are no items in your shopping cart</h4>
+            );
         }
         return (
             <div className="container-cart">

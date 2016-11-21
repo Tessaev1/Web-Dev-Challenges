@@ -1,5 +1,7 @@
 import {createStore} from "redux";
 
+"use strict";
+
 const ADD_TO_CART = "addToCart";
 const REMOVE_FROM_CART = "removeFromCart";
 

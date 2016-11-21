@@ -1,5 +1,8 @@
 .mdl-layout__header {
-  background-color: #512D34; }
+  background-color: #0B3C49; }
+
+.mdl-badge[data-badge]:after {
+  background-color: #D64933; }
 
 .mdl-js-textfield,
 .row-genres {
@@ -19,7 +22,16 @@
   margin: 5px;
   width: 550px; }
   .demo-card-wide .mdl-card__title-text {
-    padding: 16px; }
+    padding: 16px;
+    width: 300px; }
+  .demo-card-wide .movie-rating {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    font-size: 18px; }
+    .demo-card-wide .movie-rating .movie-rating-icon {
+      vertical-align: middle;
+      padding: 0 0 4px 3px; }
   .demo-card-wide .mdl-card__supporting-text {
     padding: 0 16px; }
   .demo-card-wide .small-screen {
@@ -39,12 +51,12 @@
     bottom: 5px; }
 
 .row-genres.active {
-  background-color: #512D34; }
+  background-color: #0B3C49; }
   .row-genres.active .mdl-navigation__link {
     color: #FFF; }
 
 .container-cart {
-  margin-right: 20px; }
+  margin: 0 20px 0 10px; }
 
 .row-cart-header,
 .row-cart-item {
