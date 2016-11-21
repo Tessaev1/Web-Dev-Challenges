@@ -70,8 +70,3 @@ export default class extends React.Component {
         );
     }
 }
-
-                    // <div className="movie-rating">
-                    //     {this.props.movie.vote_average}
-                    //     <i className="material-icons">grade</i>
-                    // </div>

@@ -13,13 +13,10 @@ export default class extends React.Component {
     }
 
      componentDidMount() {
-        //just like over in favorite-list.jsx, subscribe to the store
-        //and update our state whenever the store's state changes
         this.unsub = store.subscribe(() => this.setState(store.getState()));
     }
 
     componentWillUnmount() {
-        //unsubscribe from the store
         this.unsub();
     }
 
