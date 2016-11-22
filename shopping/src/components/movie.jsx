@@ -36,24 +36,30 @@ export default class extends React.Component {
         return imgStyle;
     }
 
+    getMovieContent() {
+        return (
+            <div className="col-content">
+                <h4 className="mdl-card__title-text">{this.props.movie.title}
+                    <div className="movie-rating">
+                        {this.props.movie.vote_average}
+                        <i className="material-icons movie-rating-icon">grade</i>
+                    </div>
+                </h4>
+                <p className="mdl-card__supporting-text">{this.truncate(this.props.movie.overview)}</p>
+                <div className="mdl-card__actions mdl-card--border">
+                    {this.props.children}
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className="demo-card-wide mdl-card mdl-shadow--2dp">
                 <MediaQuery query='(max-width: 1269px)'>
                     <div className="row small-screen">
                         <div className="col-img img-wide" style={this.getWideMoviePoster()}></div>
-                        <div className="col-content">
-                            <h4 className="mdl-card__title-text">{this.props.movie.title}
-                                <div className="movie-rating">
-                                    {this.props.movie.vote_average}
-                                    <i className="material-icons">grade</i>
-                                </div>
-                            </h4>
-                            <p className="mdl-card__supporting-text">{this.truncate(this.props.movie.overview)}</p>
-                            <div className="mdl-card__actions mdl-card--border">
-                                {this.props.children}
-                            </div>
-                        </div> 
+                        {this.getMovieContent()}
                     </div>
                 </MediaQuery>
                 <MediaQuery query='(min-width: 1270px)'>
@@ -61,21 +67,9 @@ export default class extends React.Component {
                         <div className="col-img">
                             <img src={this.getNarrowMoviePoster()} alt="movie poster"/> 
                         </div>
-                        <div className="col-content">
-                            <h4 className="mdl-card__title-text">{this.props.movie.title}
-                                <div className="movie-rating">
-                                    {this.props.movie.vote_average}
-                                    <i className="material-icons movie-rating-icon">grade</i>
-                                </div>
-                            </h4>
-                            <p className="mdl-card__supporting-text">{this.truncate(this.props.movie.overview)}</p>
-                            <div className="mdl-card__actions mdl-card--border">
-                                {this.props.children}
-                            </div>
-                        </div> 
+                        {this.getMovieContent()}
                     </div>
                 </MediaQuery>
-
             </div>
         );
     }

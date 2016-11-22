@@ -70,23 +70,36 @@ export default class extends React.Component {
         }
     }
 
-    render() {
-        var genres, totalPages, movies;
+    getGenres() {
+        var genres;
         if (this.state.genres) {
             genres = this.state.genres.genres.map(genre => <Genre key={genre.id} active={this.state.activeGenre === genre.id} genre={genre} handleClick={genre => this.handleGenreClick(genre)} />);
         }
+        return genres;
+    }
+
+    getMovies() {
+        var movies;
+        movies = this.state.movies.results.map(movie => (
+            <Movie key={movie.id} movie={movie}>
+                <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    onClick={() => store.dispatch(addToCart(movie, "DVD", 14.95))}>BUY ON DVD
+                </button>
+                <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    onClick={() => store.dispatch(addToCart(movie, "Blu-ray", 19.95))}>BUY ON BLU-RAY
+                </button>
+            </Movie>
+        ));
+        return movies;
+    }
+
+    render() {
+        var genres = this.getGenres();
         if (this.state.movies) {
-            totalPages = (<span>{this.state.movies.total_pages}</span>)
-            movies = this.state.movies.results.map(movie => 
-                <Movie key={movie.id} movie={movie}>
-                    <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                        onClick={() => store.dispatch(addToCart(movie, "DVD", 14.95))}>BUY ON DVD
-                    </button>
-                    <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                        onClick={() => store.dispatch(addToCart(movie, "Blu-ray", 19.95))}>BUY ON BLU-RAY
-                    </button>
-                </Movie>);
+            var totalPages = (<span>{this.state.movies.total_pages}</span>)
+            var movies = this.getMovies();
         }
+
         return (
             <div className="container">
                 <div className="row">
