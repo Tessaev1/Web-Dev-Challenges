@@ -22,16 +22,19 @@
   margin: 5px;
   width: 550px; }
   .demo-card-wide .mdl-card__title-text {
-    padding: 16px;
+    padding: 16px; }
+  .demo-card-wide .desktop .mdl-card__title-text {
     width: 300px; }
-  .demo-card-wide .movie-rating {
+  .demo-card-wide .desktop .movie-rating {
     position: absolute;
     right: 10px;
     top: 20px;
     font-size: 18px; }
-    .demo-card-wide .movie-rating .movie-rating-icon {
-      vertical-align: middle;
-      padding: 0 0 4px 3px; }
+  .demo-card-wide .desktop .movie-rating-icon {
+    vertical-align: middle;
+    padding: 0 0 4px 3px; }
+  .demo-card-wide .mobile .movie-rating {
+    display: none; }
   .demo-card-wide .mdl-card__supporting-text {
     padding: 0 16px; }
   .demo-card-wide .small-screen {

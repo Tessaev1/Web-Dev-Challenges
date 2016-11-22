@@ -36,9 +36,9 @@ export default class extends React.Component {
         return imgStyle;
     }
 
-    getMovieContent() {
+    getMovieContent(display) {
         return (
-            <div className="col-content">
+            <div className={"col-content " + display}>
                 <h4 className="mdl-card__title-text">{this.props.movie.title}
                     <div className="movie-rating">
                         {this.props.movie.vote_average}
@@ -59,7 +59,7 @@ export default class extends React.Component {
                 <MediaQuery query='(max-width: 1269px)'>
                     <div className="row small-screen">
                         <div className="col-img img-wide" style={this.getWideMoviePoster()}></div>
-                        {this.getMovieContent()}
+                        {this.getMovieContent("mobile")}
                     </div>
                 </MediaQuery>
                 <MediaQuery query='(min-width: 1270px)'>
@@ -67,7 +67,7 @@ export default class extends React.Component {
                         <div className="col-img">
                             <img src={this.getNarrowMoviePoster()} alt="movie poster"/> 
                         </div>
-                        {this.getMovieContent()}
+                        {this.getMovieContent("desktop")}
                     </div>
                 </MediaQuery>
             </div>

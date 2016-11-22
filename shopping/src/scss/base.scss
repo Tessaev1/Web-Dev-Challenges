@@ -31,18 +31,29 @@ $nav-color: #0B3C49;
 
     .mdl-card__title-text {
         padding: 16px;
-        width: 300px;
     }
+    
+    .desktop {
+        .mdl-card__title-text {
+            width: 300px;
+        }
 
-    .movie-rating {
-        position: absolute;
-        right: 10px;
-        top: 20px;
-        font-size: 18px;
+        .movie-rating {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            font-size: 18px;
+        }
 
         .movie-rating-icon {
             vertical-align: middle;
             padding: 0 0 4px 3px;
+        }
+    }
+    
+    .mobile {
+        .movie-rating {
+            display: none;
         }
     }
 
