@@ -1,0 +1,131 @@
+$nav-color: #0B3C49;
+
+.mdl-layout__header {
+    background-color: $nav-color;
+}
+
+.mdl-badge[data-badge]:after {
+    background-color: #D64933;
+}
+
+.mdl-js-textfield,
+.row-genres {
+    padding: 16px 20px;
+    max-width: 150px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
+
+.row-movies {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1;
+}
+
+.demo-card-wide {
+    margin: 5px;
+    width: 550px;
+
+    .mdl-card__title-text {
+        padding: 16px;
+    }
+    
+    .desktop {
+        .mdl-card__title-text {
+            width: 300px;
+        }
+
+        .movie-rating {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            font-size: 18px;
+        }
+
+        .movie-rating-icon {
+            vertical-align: middle;
+            padding: 0 0 4px 3px;
+        }
+    }
+    
+    .mobile {
+        .movie-rating {
+            display: none;
+        }
+    }
+
+    .mdl-card__supporting-text {
+        padding: 0 16px;
+    }
+
+    .small-screen {
+        flex-flow: column;
+        
+        .img-wide {
+            background-position: center;
+            height: 200px;
+        }
+
+        .mdl-card__title-text {
+            position: absolute;
+            top: 150px;
+            color: #FFF;
+        }
+
+        .mdl-card__supporting-text {
+            padding: 16px 16px;
+            margin: 0;
+        } 
+    }
+
+    .large-screen {
+        .mdl-card--border {
+            position: absolute;
+            bottom: 5px;
+        }  
+    }
+}
+
+.row-genres.active {
+    background-color: $nav-color;
+
+    .mdl-navigation__link {
+        color: #FFF;
+    }
+}
+
+.container-cart {
+    margin: 0 20px 0 10px;
+}
+
+.row-cart-header,
+.row-cart-item {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+
+    .quantity-button {
+        min-width: 50px;
+        padding: 0;
+    }
+}
+
+.row-cart-header,
+.row-cart-footer {
+    font-weight: 700;
+}
+
+.row-cart-footer {
+    .col {
+        position: absolute;
+        right: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+.col-movie-card {
+    flex-basis: 37em;
+}

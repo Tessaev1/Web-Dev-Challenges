@@ -13,13 +13,10 @@ export default class extends React.Component {
     }
 
      componentDidMount() {
-        //just like over in favorite-list.jsx, subscribe to the store
-        //and update our state whenever the store's state changes
         this.unsub = store.subscribe(() => this.setState(store.getState()));
     }
 
     componentWillUnmount() {
-        //unsubscribe from the store
         this.unsub();
     }
 
@@ -36,7 +33,8 @@ export default class extends React.Component {
                                 <i className="material-icons">search</i>
                             </IndexLink>
                             <IndexLink className="mdl-navigation__link" to="/cart" activeClassName="active">
-                                <i className="material-icons">shopping_cart</i>
+                                <span className="mdl-badge" data-badge={this.state.cart.length}>                                <i className="material-icons">shopping_cart</i>
+                                </span>
                             </IndexLink>
                         </nav>
                     </div>
